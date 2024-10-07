@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../static/css/munseon.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="../../static/css/datepicker.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
     <script>
         $(function() {
             // header
@@ -16,6 +19,12 @@
             }, function() {
                 $('#contents').children('.holder').css('left','-122px');
             })
+
+            // datepicker
+            $( "#datepicker" ).datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
         });
     </script>
     <title>계획 세우기</title>
@@ -80,18 +89,79 @@
                 </div>
                 <div class="detail">
                     <div class="box member_invite">
-                        <div>
-                            <label for="search_user"><h3>사용자 초대</h3></label>
+                        <label for="search_user"><h3>사용자 초대</h3></label>
+                        <div class="search_input">
                             <input type="text" id="search_user" name="search_user" placeholder="사용자 ID를 검색해보세요">
                         </div>
                         <span>사용자</span>
-                        <div class="">
-                            <div></div>
+                        <div class="user_list">
+                            <div class="user">
+                                <div class="user_img">
+                                    <img src="" alt="">
+                                </div>
+                                <div class="user_info">
+                                    <span>닉네임</span>
+                                    <span>아이디</span>
+                                </div>
+                                <div class="btn btn_invite">
+                                    <span>초&nbsp&nbsp대</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="box destination_choose">
+                        <label for="search_destination"><h3>목적지 선택</h3></label>
+                        <div class="search_input">
+                            <input type="text" id="search_destination" name="search_destination" placeholder="도시 또는 나라를 검색해보세요">
+                        </div>
+                        <div class="continents">
+                            <button class="btn btn_continent">전체</button>
+                            <button class="btn btn_continent btn_clicked">동남아</button>
+                            <button class="btn btn_continent btn_clicked">일본</button>
+                            <button class="btn btn_continent btn_clicked">대양주</button>
+                            <button class="btn btn_continent btn_clicked">유럽</button>
+                            <button class="btn btn_continent btn_clicked">미주</button>
+                            <button class="btn btn_continent btn_clicked">중국</button>
+                        </div>
+                        <span>목적지</span> 
+                        <div class="destination_list">
+                            <div class="destination">
+                                <div class="destination_img">
+                                    <img src="" alt="">
+                                </div>
+                                <span>도쿄</span>
+                            </div>
+                            <div class="destination">
+                                <div class="destination_img">
+                                    <img src="" alt="">
+                                </div>
+                                <span>도쿄</span>
+                            </div>
+                            <div class="destination">
+                                <div class="destination_img">
+                                    <img src="" alt="">
+                                </div>
+                                <span>도쿄</span>
+                            </div>
+                            <div class="destination">
+                                <div class="destination_img">
+                                    <img src="" alt="">
+                                </div>
+                                <span>도쿄</span>
+                            </div>
+                            <div class="destination">
+                                <div class="destination_img">
+                                    <img src="" alt="">
+                                </div>
+                                <span>도쿄</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="box date_choose">
+                        <h3>날짜 선택</h3>
+                        <div class="box_date">
+                            <div id="datepicker"></div>
+                        </div>
                     </div>
                     <div class="box place_choose">
                     </div>

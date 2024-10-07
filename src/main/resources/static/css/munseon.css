@@ -94,6 +94,81 @@ header{
     position: absolute;
     top: 244px;
     right: 420px;
+    visibility: hidden;
+}
+#contents .detail .member_invite label h3{
+    font-family: 'Pretendard-Bold';
+    font-size: 22px;
+}
+#contents .detail .member_invite .search_input{
+    width: 598px;
+    height: 43px;
+    border-radius: 10px;
+    background-color: #E1E1E1;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#contents .detail .member_invite .search_input input{
+    width: 566px;
+    height: 21px;
+    border-width: 0;
+    outline: none;
+    background: none;
+    font-size: 18px;
+}
+#contents .detail .member_invite >span{
+    font-family: 'Pretendard-Bold';
+    font-size: 20px;
+    display: inline-block;
+    margin-top: 30px;
+}
+#contents .detail .member_invite .user_list{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+#contents .detail .member_invite .user{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+#contents .detail .member_invite .user_img{
+    width: 56px;
+    height: 56px;
+    background-color: #D9D9D9;
+    border-radius: 50%;
+}
+#contents .detail .member_invite .user_info{
+    position: absolute;
+    left: 76px;
+    display: flex;
+    gap: 20px;
+}
+#contents .detail .member_invite .user_info span:first-of-type{
+    font-family: 'Pretendard-Bold';
+    font-size: 20px;
+}
+#contents .detail .member_invite .user_info span:nth-of-type(2){
+    font-size: 20px;
+    color: #828282;
+}
+#contents .detail .member_invite .btn_invite{
+    width: 67px;
+    height: 39px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#contents .detail .member_invite .btn_invite span{
+    font-size: 18px;
+    color: #fff;
+}
+#contents .detail .member_invite .btn_invited{
+    background-color: #E1E1E1;
 }
 
 /* detail - destination_choose */
@@ -103,6 +178,85 @@ header{
     position: absolute;
     top: 215px;
     right: 479px;
+    visibility: hidden;
+}
+#contents .detail .destination_choose label h3{
+    font-family: 'Pretendard-Bold';
+    font-size: 22px;
+}
+#contents .detail .destination_choose .search_input{
+    width: 480px;
+    height: 43px;
+    border-radius: 10px;
+    background-color: #E1E1E1;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#contents .detail .destination_choose .search_input input{
+    width: 448px;
+    height: 21px;
+    border-width: 0;
+    outline: none;
+    background: none;
+    font-size: 18px;
+}
+#contents .detail .destination_choose .continents{
+    height: 37px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+#contents .detail .destination_choose .btn_continent{
+    height: 37px;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    padding: 0px 10px 0px 10px;
+    cursor: pointer;
+}
+#contents .detail .destination_choose .btn_clicked{
+    border: 1px solid #DDDDDD;
+    color: #161616;
+    background-color: #fff;
+}
+#contents .detail .destination_choose >span{
+    font-family: 'Pretendard-Bold';
+    font-size: 20px;
+    display: inline-block;
+    margin-top: 20px;
+}
+#contents .detail .destination_choose .destination_list{
+    height: 380px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+#contents .detail .destination_choose .destination{
+    width: 228px;
+    height: 140px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#contents .detail .destination_choose .destination_img{
+    width: 228px;
+    height: 140px;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: #DDD;
+}
+#contents .detail .destination_choose .destination >span{
+    font-family: 'Pretendard-Bold';
+    font-size: 40px;
+    position: absolute;
 }
 
 /* detail - date_choose */
@@ -112,7 +266,17 @@ header{
     position: absolute;
     top: 252px;
     right: 524px;
+    visibility: hidden;
 }
+#contents .detail .date_choose h3{
+    font-family: 'Pretendard-Bold';
+    font-size: 22px;
+}
+#contents .detail .date_choose .box_date{
+    width: 100%;
+    height: 470px;
+}
+
 
 /* detail - place_choose */
 #contents .detail .place_choose{
@@ -129,6 +293,7 @@ header{
     position: absolute;
     top: 10px;
     right: 1000px;
+    visibility: hidden; 
 }
 
 
