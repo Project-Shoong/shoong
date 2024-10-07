@@ -7,7 +7,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(function() {
-          $("#wrap").children("header").load("../layout/plan_header.html");
+            // header
+            // $("#wrap").children("header").load("../layout/plan_header.html");
+
+            // header - hover
+            $('header').find('a').hover(function() {
+                $('#contents').children('.holder').css('left','0px');
+            }, function() {
+                $('#contents').children('.holder').css('left','-122px');
+            })
         });
     </script>
     <title>계획 세우기</title>
@@ -16,238 +24,384 @@
     <div id="wrap">
         <header>
             <!-- <th:block th:replace="~{../layout/plan_header::plan_header}"></th:block> -->
+            <div id="header">
+                <!-- 헤더, 전체 메뉴 -->
+                <div class="logo">
+                    <a href="#">
+                        <img src="./../../static/images/left_logo.png" alt="">
+                    </a>
+                </div>
+                <nav class="menu">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <img src="./../../static/images/left_icon1.png" alt="">
+                                    <p>계획 세우기</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <img src="./../../static/images/left_icon2.png" alt="">
+                                    <p>계획 구경하기</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">    
+                                <div>
+                                    <img src="./../../static/images/left_icon3.png" alt="">
+                                    <p>후기 구경하기</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <img src="./../../static/images/left_icon4.png" alt="">
+                                    <p>마이 페이지</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </header>
         <main>
-            <div id="map">
-                <!-- 지도 -->
-            </div>
             <div id="contents">
-                <!-- 계획 메뉴 -->
-                <div class="plan">
-                    <!-- 내용 영역 -->
-                    <section>
-                        <!-- 5. 일정 짜기 -->
-                        <div class="box">
-                            <div class="index">
-                                <h2>일정 짜기</h2>
-                                <span>5</span>
-                            </div>
-                            <div class="description">
-                                <h3>여행 일정을 세워보세요</h3>
-                                <p>일정별로 방문 장소와 시간을 설정해보세요</p>
-                                <p>장소별로 지출 계획도 세울 수 있어요</p>
-                            </div>
-                            <div class="content">
-                                <span>
-                                    <!-- 여행 날짜 표시 -->
-                                    2024년 9월 1일 ~ 2024년 9월 3일
-                                </span>
-                                <div class="schedules">
-                                    <!-- 날짜 리스트 -->
-                                    <div class="schedule">
-                                        <div>
-                                            <div class="schedule_day">
-                                                <span>DAY</span>
-                                            </div>
-                                            <div class="schedule_date">
-                                                <span>09.01</span>
-                                            </div>
-                                            <div class="schedule_cost">
-                                                <span>100,001,000원</span>
-                                            </div>
-                                            <div class="schedule_toggle">
-                                                <img src="" alt="">
-                                            </div>
-                                        </div>
-                                        <span class="schedule_separator"></span>
-                                        <div class="itineraries">
-                                            <div class="itinerary"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <span>전체 비용 : 0원</span> 
-                            </div>
-                            <div>
-                                <!-- 일정 편집 모달 -->
-                            </div>
-                        </div>
-                    </section>
-                    <div class="plan_holder">
-                        <!-- 1-4. 계획 세우기 -->
-                        <section>
-                            <!-- 1. 그룹 초대 -->
-                            <div class="box">
-                                <div class="index">
-                                    <h2>그룹 초대</h2>
-                                    <span>1</span>
-                                </div>
-                                <div class="description">
-                                    <h3>사용자를 초대하여<br>함께 계획을 세워보세요</h3>
-                                    <p>사용자의 ID를 검색하여 그룹에 초대하고</p>
-                                    <p>함께 구체적인 여행 계획을 세워보세요</p>
-                                </div>
-                                <div class="content">
-                                    <span>그룹원</span>
-                                    <div class="members">
-                                        <!-- 그룹원 리스트 -->
-                                        <div class="member">
-                                            <div class="member_img">
-                                                <img src="" alt="">
-                                            </div>
-                                            <div class="member_name">
-                                                <span>닉네임</span>
-                                                <span>아이디</span>
-                                            </div>
-                                            <div class="member_rule">
-                                                <span>그룹장</span>
-                                            </div>
-                                        </div>
-                                        <span class="member_separator"></span>
-                                        <div class="member">
-                                            <div class="member_img">
-                                                <img src="" alt="">
-                                            </div>
-                                            <div class="member_name">
-                                                <span>닉네임</span>
-                                                <span>아이디</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <!-- 사용자 초대 모달 -->
-                                </div> 
-                            </div>
-                        </section>
-                        <section>
-                            <!-- 2. 도시 및 나라 선택 -->
-                            <div class="box">
-                                <div class="index">
-                                    <h2>도시 및 나라 선택</h2>
-                                    <span>2</span>
-                                </div>
-                                <div class="description">
-                                    <h3>가고 싶은 도시 및 나라를<br>골라보세요</h3>
-                                    <p>여행 계획의 출발점은 여행 목적지 선택입니다</p>
-                                    <p>경로 설정을 위해 목적지를 선택해주세요</p>
-                                </div>
-                                <div class="content">
-                                    <span>목적지</span>
-                                    <div class="destinations">
-                                        <!-- 목적지 리스트 -->
-                                        <div class="destination">
-                                            <div class="destination_img">
-                                                <img src="" alt="">
-                                            </div>
-                                            <div class="destination_name">
-                                                <span>목적지</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <!-- 목적지 선택 모달 -->
-                                </div>
-                            </div>
-                        </section>
-                        <section>
-                            <!-- 3. 날짜 선택 -->
-                            <div class="box">
-                                <div class="index">
-                                    <h2>날짜 선택</h2>
-                                    <span>3</span>
-                                </div>
-                                <div class="description">
-                                    <h3>여행 기간을 선택해주세요</h3>
-                                    <p>여행의 시작 일정과 종료 일정을 설정해주세요</p>
-                                </div>
-                                <div class="content">
-                                    <span>기간</span>
-                                    <div class="date">
-                                        <!-- 기간 표시 -->
-                                        <span>2024년 10월 18일</span>
-                                        <span>~</span>
-                                        <span>2024년 10월 20일</span>
-                                    </div>
-                                </div>
-                                <div>
-                                    <!-- 날짜 선택 모달 -->
-                                </div>
-                            </div>
-                        </section>
-                        <section>
-                            <!-- 4. 장소 선택 -->
-                            <div class="box">
-                                <div class="index">
-                                    <h2>장소 선택</h2>
-                                    <span>4</span>
-                                </div>
-                                <div class="description">
-                                    <h3>가고 싶은 장소들을 모아보세요</h3>
-                                    <p>여행 기간 동안 방문할 장소들을 모아주세요</p>
-                                    <p>다음 단계에서 구체적인 계획을 세울 수 있어요</p>
-                                </div>
-                                <div class="content">
-                                    <span>장소</span>
-                                    <div class="places">
-                                        <!-- 장소 리스트 -->
-                                        <div class="place">
-                                            <div class="place_img">
-                                                <img src="" alt="">
-                                            </div>
-                                            <div class="place_info">
-                                                <div class="place_name">
-                                                    <span>장소명</span>
-                                                    <div><span>숙소</span></div>
-                                                </div>
-                                                <span>주소</span>
-                                            </div>
-                                            <div class="place_remove">
-                                                <img src="" alt="">
-                                            </div>
-                                        </div><span class="place_separator"></span>
-                                        <div class="place">
-                                            <div class="place_img">
-                                                <img src="" alt="">
-                                            </div>
-                                            <div class="place_info">
-                                                <div class="place_name">
-                                                    <span>장소명</span>
-                                                    <div><span>숙소</span></div>
-                                                </div>
-                                                <span>주소</span>
-                                            </div>
-                                            <div class="place_remove">
-                                                <img src="" alt="">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <!-- 장소 추가 모달 -->
-                                </div>
-                            </div>
-                        </section>
+                <div class="map">
+                    <!-- 지도 -->
+                    <div class="cover">
+                        
                     </div>
-                </div>  
-                <div class="next">
-                    <!-- 버튼 영역 -->
-                    <a href="" class="btn">
-                        <div class="btn_schedule">
-                            <p>일정 짜기</p>
+                    
+                </div>
+                <div class="detail">
+                    <div class="box member_invite">
+                        <div>
+                            <label for="search_user"><h3>사용자 초대</h3></label>
+                            <input type="text" id="search_user" name="search_user" placeholder="사용자 ID를 검색해보세요">
                         </div>
-                    </a>
-                    <a href="" class="btn">
-                        <div class="btn_save">
-                            <p>저  장</p>
+                        <span>사용자</span>
+                        <div class="">
+                            <div></div>
                         </div>
-                    </a>
+                    </div>
+                    <div class="box destination_choose">
+                    </div>
+                    <div class="box date_choose">
+                    </div>
+                    <div class="box place_choose">
+                    </div>
+                    <div class="box schedule_manage">
+                    </div>
+                </div>
+                <div class="holder">
+                    <!-- 계획 메뉴 -->
+                    <div class="plan">
+                        <!-- 내용 영역 -->
+                        <section>
+                            <!-- 5. 일정 짜기 -->
+                            <div class="box">
+                                <div class="index">
+                                    <h2>일정 짜기</h2>
+                                    <span>5</span>
+                                </div>
+                                <div class="description">
+                                    <h3>여행 일정을 세워보세요</h3>
+                                    <p>일정별로 방문 장소와 시간을 설정해보세요</p>
+                                    <p>장소별로 지출 계획도 세울 수 있어요</p>
+                                </div>
+                                <div class="content">
+                                    <span>
+                                        <!-- 여행 날짜 표시 -->
+                                        2024년 9월 1일 ~ 2024년 9월 3일
+                                    </span>
+                                    <div class="schedules">
+                                        <!-- 날짜 리스트 -->
+                                        <div class="schedule">
+                                            <div>
+                                                <div class="schedule_info">
+                                                    <div class="schedule_day">
+                                                        <span>DAY</span>
+                                                    </div>
+                                                    <div class="schedule_date">
+                                                        <span>09.01</span>
+                                                    </div>
+                                                    <div class="schedule_cost">
+                                                        <span>100,001,000원</span>
+                                                    </div>
+                                                    <div class="schedule_toggle">
+                                                        <img src="../../static/images/toggle_up.png" alt="">
+                                                    </div>
+                                                </div>
+                                                <span class="schedule_separator"></span>
+                                            </div>
+                                            <div class="itineraries">
+                                                <div>
+                                                    <div class="itinerary">
+                                                        <span class="itinerary_type"></span>
+                                                        <div class="itinerary_info">
+                                                            <span class="itinerary_place">장소명</span>
+                                                            <span class="itinerary_destination">도시명</span>
+                                                        </div>
+                                                        <div class="itinerary_times">
+                                                            <span class="itinerary_start_time">12시 30분</span>
+                                                            <span>~</span>
+                                                            <span class="itinerary_end_time">12시 40분</span>
+                                                        </div>
+                                                        <div class="itinerary_remove">
+                                                            <img src="../../static/images/remove.png" alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div>
+                                                    <div class="itinerary">
+                                                        <span class="itinerary_type"></span>
+                                                        <div class="itinerary_info">
+                                                            <span class="itinerary_place">장소명</span>
+                                                            <span class="itinerary_destination">도시명</span>
+                                                        </div>
+                                                        <div class="itinerary_times">
+                                                            <span class="itinerary_start_time">12시 30분</span>
+                                                            <span>~</span>
+                                                            <span class="itinerary_end_time">12시 40분</span>
+                                                        </div>
+                                                        <div class="itinerary_remove">
+                                                            <img src="../../static/images/remove.png" alt="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="itinerary_add">
+                                                <div>
+                                                    <img src="../../static/images/add.png" alt="">
+                                                </div>
+                                                <span>일정 추가</span>
+                                            </div>
+                                        </div>
+                                        <div class="schedule">
+                                            <div>
+                                                <div class="schedule_info">
+                                                    <div class="schedule_day">
+                                                        <span>DAY</span>
+                                                    </div>
+                                                    <div class="schedule_date">
+                                                        <span>09.01</span>
+                                                    </div>
+                                                    <div class="schedule_cost">
+                                                        <span>100,001,000원</span>
+                                                    </div>
+                                                    <div class="schedule_toggle">
+                                                        <img src="../../static/images/toggle_down.png" alt="">
+                                                    </div>
+                                                </div>
+                                                <span class="schedule_separator"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="plan_cost">
+                                    <span>전체 비용 : </span>
+                                    <span>0원</span>
+                                </div>
+                                <div>
+                                    <!-- 일정 편집 모달 -->
+                                </div>
+                            </div>
+                        </section>
+                        <div class="plan_holder">
+                            <!-- 1-4. 계획 세우기 -->
+                            <section>
+                                <!-- 1. 그룹 초대 -->
+                                <div class="box">
+                                    <div class="index">
+                                        <h2>그룹 초대</h2>
+                                        <span>1</span>
+                                    </div>
+                                    <div class="description">
+                                        <h3>사용자를 초대하여<br>함께 계획을 세워보세요</h3>
+                                        <p>사용자의 ID를 검색하여 그룹에 초대하고</p>
+                                        <p>함께 구체적인 여행 계획을 세워보세요</p>
+                                    </div>
+                                    <div class="content">
+                                        <span>그룹원</span>
+                                        <div class="members">
+                                            <!-- 그룹원 리스트 -->
+                                            <div class="member">
+                                                <div class="member_img">
+                                                    <img src="" alt="">
+                                                </div>
+                                                <div class="member_name">
+                                                    <span>닉네임</span>
+                                                    <span>아이디</span>
+                                                </div>
+                                                <div class="member_rule">
+                                                    <span>그룹장</span>
+                                                </div>
+                                            </div>
+                                            <span class="member_separator"></span>
+                                            <div class="member">
+                                                <div class="member_img">
+                                                    <img src="" alt="">
+                                                </div>
+                                                <div class="member_name">
+                                                    <span>닉네임</span>
+                                                    <span>아이디</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <!-- 사용자 초대 모달 -->
+                                    </div> 
+                                </div>
+                            </section>
+                            <section>
+                                <!-- 2. 도시 및 나라 선택 -->
+                                <div class="box">
+                                    <div class="index">
+                                        <h2>도시 및 나라 선택</h2>
+                                        <span>2</span>
+                                    </div>
+                                    <div class="description">
+                                        <h3>가고 싶은 도시 및 나라를<br>골라보세요</h3>
+                                        <p>여행 계획의 출발점은 여행 목적지 선택입니다</p>
+                                        <p>경로 설정을 위해 목적지를 선택해주세요</p>
+                                    </div>
+                                    <div class="content">
+                                        <span>목적지</span>
+                                        <div class="destinations">
+                                            <!-- 목적지 리스트 -->
+                                            <div class="destination">
+                                                <div class="destination_img">
+                                                    <img src="" alt="">
+                                                </div>
+                                                <div class="destination_name">
+                                                    <span>목적지</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <!-- 목적지 선택 모달 -->
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <!-- 3. 날짜 선택 -->
+                                <div class="box">
+                                    <div class="index">
+                                        <h2>날짜 선택</h2>
+                                        <span>3</span>
+                                    </div>
+                                    <div class="description">
+                                        <h3>여행 기간을 선택해주세요</h3>
+                                        <p>여행의 시작 일정과 종료 일정을 설정해주세요</p>
+                                    </div>
+                                    <div class="content">
+                                        <span>기간</span>
+                                        <div class="date">
+                                            <!-- 기간 표시 -->
+                                            <span>2024년 10월 18일</span>
+                                            <span>~</span>
+                                            <span>2024년 10월 20일</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <!-- 날짜 선택 모달 -->
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <!-- 4. 장소 선택 -->
+                                <div class="box">
+                                    <div class="index">
+                                        <h2>장소 선택</h2>
+                                        <span>4</span>
+                                    </div>
+                                    <div class="description">
+                                        <h3>가고 싶은 장소들을 모아보세요</h3>
+                                        <p>여행 기간 동안 방문할 장소들을 모아주세요</p>
+                                        <p>다음 단계에서 구체적인 계획을 세울 수 있어요</p>
+                                    </div>
+                                    <div class="content">
+                                        <span>장소</span>
+                                        <div class="places">
+                                            <!-- 장소 리스트 -->
+                                            <div class="place">
+                                                <div class="place_img">
+                                                    <img src="" alt="">
+                                                </div>
+                                                <div class="place_info">
+                                                    <div class="place_name">
+                                                        <span>장소명</span>
+                                                        <div><span>숙소</span></div>
+                                                    </div>
+                                                    <span>주소</span>
+                                                </div>
+                                                <div class="place_remove">
+                                                    <img src="" alt="">
+                                                </div>
+                                            </div><span class="place_separator"></span>
+                                            <div class="place">
+                                                <div class="place_img">
+                                                    <img src="" alt="">
+                                                </div>
+                                                <div class="place_info">
+                                                    <div class="place_name">
+                                                        <span>장소명</span>
+                                                        <div><span>숙소</span></div>
+                                                    </div>
+                                                    <span>주소</span>
+                                                </div>
+                                                <div class="place_remove">
+                                                    <img src="" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <!-- 장소 추가 모달 -->
+                                    </div>
+                                </div>
+                            </section>
+                            <section>
+                                <div class="box">
+                                    <div class="index">
+                                        <h2>계획 세우기</h2>
+                                        <span>1 - 4</span>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    <div class="next">
+                        <!-- 버튼 영역 -->
+                        <a href="" class="btn">
+                            <div class="btn_schedule">
+                                <p>일정 짜기</p>
+                            </div>
+                        </a>
+                        <a href="" class="btn">
+                            <div class="btn_save">
+                                <p>저  장</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="fab">
+                <div class="btn fab_btn">
+                    <img src="../../static/images/left_logo.png" alt="">
                 </div>
             </div>
         </main>
-        <div class="fab"></div>
     </div>
 </body>
+<script>
+
+</script>
 </html>

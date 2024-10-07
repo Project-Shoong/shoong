@@ -34,6 +34,7 @@ a{
 /* wrap */
 #wrap{
     display: flex;
+    background-color: #006BDF;
 }
 
 /* header */
@@ -71,7 +72,7 @@ header{
 }
 
 /* map */
-#map{
+#contents .map{
     width: 1480px;
     height: 1080px;
     background-color: darkseagreen;
@@ -79,8 +80,60 @@ header{
     right: 0px;
 }
 
-/* contents */
-#contents{
+/* detail */
+#contents .detail .box{
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
+    padding: 30px;
+}
+/* detail - member_invite */
+#contents .detail .member_invite{
+    width: 658px;
+    height: 592px;
+    position: absolute;
+    top: 244px;
+    right: 420px;
+}
+
+/* detail - destination_choose */
+#contents .detail .destination_choose{
+    width: 540px;
+    height: 650px;
+    position: absolute;
+    top: 215px;
+    right: 479px;
+}
+
+/* detail - date_choose */
+#contents .detail .date_choose{
+    width: 450px;
+    height: 576px;
+    position: absolute;
+    top: 252px;
+    right: 524px;
+}
+
+/* detail - place_choose */
+#contents .detail .place_choose{
+    width: 450px;
+    height: 630px;
+    position: absolute;
+    top: 10px;
+    right: 1000px;
+}
+/* detail - schedule_manage */
+#contents .detail .schedule_manage{
+    width: 450px;
+    height: 1060px;
+    position: absolute;
+    top: 10px;
+    right: 1000px;
+}
+
+
+/* holder */
+#contents .holder{
     width: 400px;
     height: 1080px;
     background-color: #fff;
@@ -90,178 +143,194 @@ header{
     flex-direction: column;
     border-radius: 20px 20px 0px 0px;
     box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
+    transition-property: left;
+    transition-duration: 0.5s;
 }
 
 /* plan */
-#contents .plan{
+#contents .holder .plan{
     height: 998px;
     border-radius: 20px 20px 0px 0px;
     position: relative;
     overflow: hidden;
 }
-#contents .plan .plan_holder{
+#contents .holder .plan .plan_holder{
     width: 100%;
     position: absolute;
     top: 0px;
 }
-#contents .plan .plan_holder section{
+#contents .holder .plan .plan_holder section{
     width: 100%;
     position: absolute;
 }
-/*  section 열람시 간격 761px, section간 간격: 79px 158px 237px*/
-#contents .plan .plan_holder section:nth-of-type(1) { top: 918px; }
-#contents .plan .plan_holder section:nth-of-type(2) { top: 918px; }
-#contents .plan .plan_holder section:nth-of-type(3) { top: 918px; }
-#contents .plan .plan_holder section:nth-of-type(4) { top: 918px ; }
+/*
+    section 열람시 간격 761px, section간 간격: 79px 158px 237px
+    일정짜기 열람: 921px
+*/
+#contents .holder .plan_holder section:nth-of-type(1) { top: 921px; }
+#contents .holder .plan_holder section:nth-of-type(2) { top: 1000px; }
+#contents .holder .plan_holder section:nth-of-type(3) { top: 1079px; }
+#contents .holder .plan_holder section:nth-of-type(4) { top: 1159px; }
+#contents .holder .plan_holder section:last-of-type { top: 921px; }
 /* plan inner */
-#contents .plan section .box{
+#contents .holder .plan section .box{
     height: 781px;
     padding: 30px;
     background-color: #fff;
     border-radius: 20px 20px 0px 0px;
     box-shadow: 0 -5px 10px -5px rgba(0, 0, 0, 0.25);
 }
+#contents .holder .plan >section .box{
+    height: 938px;
+    position: relative;
+}
+#contents .holder .plan_holder section:last-of-type .box{
+    height: 82px;
+}
 /* plan index */
-#contents .plan section .box .index{
+#contents .holder .plan section .box .index{
     display: flex;
     justify-content: space-between;
     margin-bottom: 27px;
 }
-#contents .plan section .box .index h2{
+#contents .holder .plan section .box .index h2{
     font-family: 'Pretendard-Bold';
     font-size: 21px;
 }
-#contents .plan section .box .index span{
+#contents .holder .plan section .box .index span{
     font-family: 'Pretendard-Bold';
     font-size: 22px;
 }
+#contents .holder .plan_holder section:last-of-type .box .index h2{
+    font-size: 22px;
+}
 /* plan description */
-#contents .plan section .box .description{
+#contents .holder .plan section .box .description{
     margin-bottom: 34px;
 }
-#contents .plan section .box .description h3{
+#contents .holder .plan section .box .description h3{
     font-family: 'Pretendard-Bold';
     font-size: 25px;
     margin-bottom: 10px;
 }
-#contents .plan section .box .description p{
+#contents .holder .plan section .box .description p{
     font-size: 18px;
     color: #828282;
 }
 /* plan content */
-#contents .plan section .box .content{
+#contents .holder .plan section .box .content{
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-#contents .plan section .box .content >span{
+#contents .holder .plan section .box .content >span{
     font-family: 'Pretendard-Bold';
     font-size: 18px;
 }
 /* plan content group */
-#contents .plan .members{
+#contents .holder .plan .members{
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
-#contents .plan .members .member{
+#contents .holder .plan .members .member{
     display: flex;
     gap: 22px;
 }
-#contents .plan .members .member_img{
+#contents .holder .plan .members .member_img{
     width: 55px;
     height: 55px;
     border-radius: 50%;
     background-color: #000;
     overflow: hidden;
 }
-#contents .plan .members .member_name{
+#contents .holder .plan .members .member_name{
     width: 191px;
     display: flex;
     flex-direction: column;
     padding-top: 6px;
     padding-bottom: 2px;
 }
-#contents .plan .members .member_name span:nth-of-type(1){
+#contents .holder .plan .members .member_name span:nth-of-type(1){
     font-family: 'Pretendard-Bold';
     font-size: 19px;
 }
-#contents .plan .members .member_name span:nth-of-type(2){
+#contents .holder .plan .members .member_name span:nth-of-type(2){
     font-size: 20px;
 }
-#contents .plan .members .member_rule{
+#contents .holder .plan .members .member_rule{
     display: flex;
     align-items: center;
 }
-#contents .plan .members .member_rule span{
+#contents .holder .plan .members .member_rule span{
     font-size: 19px;
 }
-#contents .plan .members .member_separator{
+#contents .holder .plan .members .member_separator{
     width: 263px;
     height: 1px;
     background-color: #EEEEEE;
     margin-left: 77px;
 }
 /* plan content destination */
-#contents .plan .destinations{
+#contents .holder .plan .destinations{
     display: flex;
     gap: 50px;
     flex-wrap: wrap;
 }
-#contents .plan .destinations .destination{
+#contents .holder .plan .destinations .destination{
     display: flex;
     flex-direction: column;
     gap: 15px;
     align-items: center;
 }
-#contents .plan .destinations .destination_img {
+#contents .holder .plan .destinations .destination_img {
     width: 80px;
     height: 80px;
     border-radius: 50%;
     background-color: #000;
     overflow: hidden;
 }
-#contents .plan .destinations .destination_name span{
+#contents .holder .plan .destinations .destination_name span{
     font-size: 19px;
 }
 /* plan content date */
-#contents .plan .date{
+#contents .holder .plan .date{
     display: flex;
     justify-content: space-between;
 }
-#contents .plan .date span{
+#contents .holder .plan .date span{
     font-size: 19px;
 }
 /* plan content place */
-#contents .plan .places{
+#contents .holder .plan .places{
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
-#contents .plan .place{
+#contents .holder .plan .place{
     display: flex;
     justify-content: space-between;
 }
-#contents .plan .place_img{
+#contents .holder .plan .place_img{
     width: 80px;
     height: 53px;
     border-radius: 10px;
     background-color: #000;
 }
-#contents .plan .place_info{
+#contents .holder .plan .place_info{
     width: 208px;
     padding-top: 6px;
     padding-bottom: 4px;
 }
-#contents .plan .place_name{
+#contents .holder .plan .place_name{
     display: flex;
     flex-direction: row;
     gap: 6px;
 }
-#contents .plan .place_name >span{
+#contents .holder .plan .place_name >span{
     font-size: 19px;
 }
-#contents .plan .place_name div{
+#contents .holder .plan .place_name div{
     width: 33px;
     height: 22px;
     border-radius: 10px;
@@ -270,71 +339,230 @@ header{
     justify-content: center;
     align-items: center;
 }
-#contents .plan .place_name div span{
+#contents .holder .plan .place_name div span{
     font-family: 'Pretendard-Bold';
     font-size: 13px;
     color: #fff;
 }
-#contents .plan .place_info >span{
+#contents .holder .plan .place_info >span{
     font-size: 15px;
     color: #828282;
 }
-#contents .plan .place_remove{
+#contents .holder .plan .place_remove{
     width: 20px;
     height: 20px;
     background-color: #000;
     margin-top: 16px;
 }
-#contents .plan .places .place_separator{
+#contents .holder .plan .places .place_separator{
     width: 244px;
     height: 1px;
     background-color: #EEEEEE;
     margin-left: 96px;
 }
 /* plan content schedule */
-#contents .plan .schedule_day{
-    
+#contents .holder .plan .schedules{
+    display: flex;
+    flex-direction: column;
 }
-
-
-
-/* next */
-#contents .next{
-    height: 82px;
-    border-top: 2px solid #EEEEEE;
-    position: relative;
+#contents .holder .plan .schedule{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-bottom: 15px;
 }
-#contents .next a{
-    position: absolute;
-    top: 16px;
-    right: 16px;
+#contents .holder .plan .schedule >div:first-of-type{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
-#contents .next a:hover{
-    background-color: #005FC5;
+#contents .holder .plan .schedule_info{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    cursor: pointer;
 }
-#contents .next a div{
+#contents .holder .plan .schedule_day{
+    width: 57px;
+}
+#contents .holder .plan .schedule_date{
+    width: 61px;
+}
+#contents .holder .plan .schedule_cost{
+    width: 183px;
+    text-align: right;
+}
+#contents .holder .plan .schedule_toggle{
+    width: 24px;
+    height: 24px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#contents .next a div p{
+#contents .holder .plan .schedule_day span{
+    font-family: 'Pretendard-Bold';
+    font-size: 20px;
+}
+#contents .holder .plan .schedule_date span{
+    font-family: 'Pretendard-Bold';
+    font-size: 17px;
+}
+#contents .holder .plan .schedule_cost span{
+    font-size: 17px;
+}
+#contents .holder .plan .schedule_separator{
+    width: 340px;
+    height: 1px;
+    background-color: #EEEEEE;
+}
+#contents .holder .plan .schedule .itineraries{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+#contents .holder .plan .schedule .itineraries >div{
+    padding: 10px 5px 10px 10px;
+}
+#contents .holder .plan .schedule .itinerary{
+    display: flex;
+    justify-content: space-between;
+}
+#contents .holder .plan .schedule .itinerary_type{
+    width: 6px;
+    height: 53px;
+    background-color: #00A538;
+}
+#contents .holder .plan .schedule .itinerary_info{
+    width: 111px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 6px;
+}
+#contents .holder .plan .schedule .itinerary_place{
+    font-size: 18px;
+}
+#contents .holder .plan .schedule .itinerary_destination{
+    font-size: 15px;
+    color: #828282;
+}
+#contents .holder .plan .schedule .itinerary_times{
+    width: 158px;
+    display: flex;
+    gap: 5px;
+    margin-top: 17px;
+    margin-bottom: 18px;
+}
+#contents .holder .plan .schedule .itinerary_times span{
+    font-size: 15px;
+    color: #828282;
+}
+#contents .holder .plan .schedule .itinerary_remove{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    margin-bottom: 17px;
+}
+#contents .holder .plan .schedule .itinerary_add{
+    display: flex;
+    gap: 5px;
+    margin: 6px 15px 11px 15px;
+    padding: 4px 5px 4px 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+#contents .holder .plan .schedule .itinerary_add:hover{
+    background-color: #EEEEEE;
+}
+#contents .holder .plan .schedule .itinerary_add div{
+    width: 19px;
+    height: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#contents .holder .plan .schedule .itinerary_add span{
+    font-family: 'Pretendard-Bold';
+    font-size: 15px;
+    color: #61B3FF;
+    padding-top: 1px;
+}
+#contents .holder .plan .plan_cost{
+    position: absolute;
+    right: 30px;
+    bottom: 45px;
+    text-align: right;
+}
+#contents .holder .plan .plan_cost span{
+    font-family: 'Pretendard-Bold';
+    font-size: 20px;
+}
+
+
+
+
+
+/* next */
+#contents .holder .next{
+    height: 79px;
+    border-top: 2px solid #EEEEEE;
+    position: relative;
+}
+#contents .holder .next a{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+#contents .holder .next a:hover{
+    background-color: #005FC5;
+}
+#contents .holder .next a div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#contents .holder .next a div p{
     font-family: 'Pretendard-Bold';
     color: #fff;
 }
-#contents .next .btn_schedule{
+#contents .holder .next .btn_schedule{
     width: 110px;
     height: 50px;
 }
-#contents .next .btn_schedule p{
+#contents .holder .next .btn_schedule p{
     font-size: 20px;
 }
-#contents .next .btn_save{
+#contents .holder .next .btn_save{
     width: 89px;
     height: 50px;
 }
-#contents .next .btn_save p{
+#contents .holder .next .btn_save p{
     font-size: 22px;
 }
-#contents .next a:nth-of-type(2){
+#contents .holder .next a:nth-of-type(2){
     visibility: hidden;
+}
+
+/* fab */
+#fab{
+    position: absolute;
+    right: 25px;
+    bottom: 25px;
+}
+#fab .fab_btn{
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.25), 0 0 5px 0 #006BDF;
+    cursor: pointer;
+}
+#fab .fab_btn:hover{
+    background-color: #005FC5;
 }
