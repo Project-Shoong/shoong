@@ -11,8 +11,8 @@
 body{
     font-family: 'Pretendard-Regular';
     color: #161616 ;
-    width: 1920px;
-    height: 1080px;
+    width: 100%;
+    height: 100vh;
 }
 main{
     /* 지도 배치 */
@@ -40,7 +40,7 @@ a{
 /* header */
 header{
     width: 182px;
-    height: 1080px;
+    height: 100vh;
     background-color: #006BDF;
 }
 #header{
@@ -73,8 +73,8 @@ header{
 
 /* map */
 #contents .map{
-    width: 1480px;
-    height: 1080px;
+    width: 100%;
+    height: 100vh;
     background-color: darkseagreen;
     position: absolute;
     right: 0px;
@@ -185,7 +185,7 @@ header{
     position: absolute;
     top: 215px;
     right: 479px;
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 #contents .detail .destination_choose label h3{
     font-family: 'Pretendard-Bold';
@@ -273,7 +273,7 @@ header{
     position: absolute;
     top: 252px;
     right: 524px;
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 #contents .detail .date_choose h3{
     font-family: 'Pretendard-Bold';
@@ -292,7 +292,7 @@ header{
     position: absolute;
     top: 10px;
     right: 1000px;
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 #contents .detail .place_choose label h3{
     font-family: 'Pretendard-Bold';
@@ -422,11 +422,11 @@ header{
 /* detail - schedule_manage */
 #contents .detail .schedule_manage{
     width: 450px;
-    height: 1060px;
+    height: 1080px;
     position: absolute;
     top: 10px;
     right: 1000px;
-    visibility: hidden;
+    /* visibility: hidden; */
 }
 #contents .detail .schedule_manage h3{
     font-family: 'Pretendard-Bold';
@@ -683,7 +683,7 @@ header{
 /* holder */
 #contents .holder{
     width: 400px;
-    height: 1080px;
+    height: 100vh;
     background-color: #fff;
     position: relative;
     left: -122px;
@@ -697,7 +697,7 @@ header{
 
 /* plan */
 #contents .holder .plan{
-    height: 998px;
+    height: 874px;
     border-radius: 20px 20px 0px 0px;
     position: relative;
     overflow: hidden;
@@ -715,14 +715,14 @@ header{
 }
 /*
     section 열람시 간격 761px, section간 간격: 79px 158px 237px
-    일정짜기 열람: 921px
+    일정짜기 열람: 795px
 */
 #contents .holder .plan_holder section:nth-of-type(1) { top: 0px; }
-#contents .holder .plan_holder section:nth-of-type(2) { top: 763px; }
-#contents .holder .plan_holder section:nth-of-type(3) { top: 842px; }
-#contents .holder .plan_holder section:nth-of-type(4) { top: 921px; }
+#contents .holder .plan_holder section:nth-of-type(2) { top: 635px; }
+#contents .holder .plan_holder section:nth-of-type(3) { top: 714px; }
+#contents .holder .plan_holder section:nth-of-type(4) { top: 795px; }
 #contents .holder .plan_holder section:last-of-type {
-    top: 921px;
+    top: 795px;
     visibility: hidden;
 }
 /* plan inner */

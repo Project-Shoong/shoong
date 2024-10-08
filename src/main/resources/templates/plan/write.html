@@ -590,9 +590,9 @@
         // 클릭 전환 이벤트
         members_tab.click(function() {
             $(this).css('top','0px');
-            destinations_tab.css('top','763px');
-            date_tab.css('top','842px');
-            places_tab.css('top','921px');
+            destinations_tab.css('top','635px');
+            date_tab.css('top','714px');
+            places_tab.css('top','795px');
 
             member_invite.css('visibility', 'visible');
             destination_choose.css('visibility', 'hidden');
@@ -602,8 +602,8 @@
         destinations_tab.click(function() {
             members_tab.css('top','0px');
             $(this).css('top','79px');
-            date_tab.css('top','842px');
-            places_tab.css('top','921px');
+            date_tab.css('top','714px');
+            places_tab.css('top','795px');
 
             member_invite.css('visibility', 'hidden');
             destination_choose.css('visibility', 'visible');
@@ -614,7 +614,7 @@
             members_tab.css('top','0px');
             destinations_tab.css('top','79px');
             $(this).css('top','158px');
-            places_tab.css('top','921px');
+            places_tab.css('top','795px');
 
             member_invite.css('visibility', 'hidden');
             destination_choose.css('visibility', 'hidden');
@@ -633,10 +633,16 @@
             place_choose.css('visibility', 'visible');
         })
         index_tab.click(function() {
+            index_tab.css('visibility', 'hidden');
+            members_tab.css('visibility','visible');
+            destinations_tab.css('visibility','visible');
+            date_tab.css('visibility','visible');
+            places_tab.css('visibility','visible');
+
             members_tab.css('top','0px');
-            destinations_tab.css('top','763px');
-            date_tab.css('top','842px');
-            places_tab.css('top','921px');
+            destinations_tab.css('top','635px');
+            date_tab.css('top','714px');
+            places_tab.css('top','795px');
 
             member_invite.css('visibility', 'visible');
             destination_choose.css('visibility', 'hidden');
@@ -648,14 +654,19 @@
             btn_save.css('visibility', 'hidden');
         })
         btn_schedule.click(function() {
-            members_tab.css('top','1080px');
-            destinations_tab.css('top','1080px');
-            date_tab.css('top','1080px');
-            places_tab.css('top','1080px');
-            // setTimeout(function() {
-                index_tab.css('visibility', 'visible');
-            // },500)
+            members_tab.css('top','795px');
+            destinations_tab.css('top','795px');
+            date_tab.css('top','795px');
+            places_tab.css('top','795px');
+            index_tab.css('visibility', 'visible');
 
+            setTimeout(function() {
+                members_tab.css('visibility','hidden');
+                destinations_tab.css('visibility','hidden');
+                date_tab.css('visibility','hidden');
+                places_tab.css('visibility','hidden');
+            }, 400)
+            
             member_invite.css('visibility', 'hidden');
             destination_choose.css('visibility', 'hidden');
             date_choose.css('visibility', 'hidden');

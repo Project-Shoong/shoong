@@ -1,5 +1,10 @@
 package com.example.demo.controller;
 
-public class PlanController {
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+@Controller
+@RequestMapping("/plan/*")
+public class PlanController {
+	
 }
