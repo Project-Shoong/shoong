@@ -79,6 +79,14 @@ header{
     position: absolute;
     right: 0px;
 }
+#contents .map .cover{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.25);
+    pointer-events: none;
+}
+
 
 /* detail */
 #contents .detail .box{
@@ -94,7 +102,6 @@ header{
     position: absolute;
     top: 244px;
     right: 420px;
-    visibility: hidden;
 }
 #contents .detail .member_invite label h3{
     font-family: 'Pretendard-Bold';
@@ -285,7 +292,133 @@ header{
     position: absolute;
     top: 10px;
     right: 1000px;
+    visibility: hidden;
 }
+#contents .detail .place_choose label h3{
+    font-family: 'Pretendard-Bold';
+    font-size: 22px;
+}
+#contents .detail .place_choose .search_input{
+    width: 390px;
+    height: 43px;
+    border-radius: 10px;
+    background-color: #E1E1E1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+#contents .detail .place_choose .search_input input{
+    width: 356px;
+    height: 21px;
+    border-width: 0;
+    outline: none;
+    background: none;
+    font-size: 18px;
+}
+#contents .detail .place_choose >span{
+    font-family: 'Pretendard-Bold';
+    font-size: 20px;
+    display: inline-block;
+    margin-top: 20px;
+}
+#contents .detail .place_choose .place_list{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+#contents .detail .place_choose .place{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+#contents .detail .place_choose .place_img{
+    width: 67px;
+    height: 67px;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    overflow: hidden;
+}
+#contents .detail .place_choose .place_info{
+    position: absolute;
+    left: 80px;
+    display: flex;
+    flex-direction: column;
+}
+#contents .detail .place_choose .place_info .place_name{
+    font-family: 'Pretendard-Bold';
+    font-size: 20px;
+    display: flex;
+    gap: 8px;
+}
+#contents .detail .place_choose .place_info >span{
+    font-size: 19px;
+}
+#contents .detail .place_choose .place_info .place_type{
+    height: 22px;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 5px 3px 5px;
+    background-color: #D30000;
+    color: #fff;
+    border-radius: 10px;
+}
+#contents .detail .place_choose .place_info >span{
+    font-size: 15px;
+    color: #828282;
+}
+#contents .detail .place_choose .place_ratings{
+    display: flex;
+    margin-top: 2px;
+}
+#contents .detail .place_choose .img_rating{
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#contents .detail .place_choose .place_ratings >span{
+    font-size: 15px;
+    color: #828282;
+}
+#contents .detail .place_choose .place_rating{
+    display: inline-block;
+    margin-left: 6px;
+    margin-top: 2px;
+}
+#contents .detail .place_choose .place_ratings_total{
+    display: inline-block;
+    margin-left: 2px;
+    margin-top: 2px;
+}
+#contents .detail .place_choose .place_address{
+    display: inline-block;
+    width: 243px;
+    height: 18px;
+    margin-top: 6px;
+}
+#contents .detail .place_choose .btn_add_place{
+    width: 54px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+}
+#contents .detail .place_choose .btn_add_place span{
+    font-size: 15px;
+    color: #fff;
+}
+#contents .detail .place_choose .place_separator{
+    width: 390px;
+    height: 1px;
+    background-color: #EEEEEE;
+}
+
 /* detail - schedule_manage */
 #contents .detail .schedule_manage{
     width: 450px;
@@ -293,9 +426,259 @@ header{
     position: absolute;
     top: 10px;
     right: 1000px;
-    visibility: hidden; 
+    visibility: hidden;
 }
-
+#contents .detail .schedule_manage h3{
+    font-family: 'Pretendard-Bold';
+    font-size: 22px;
+}
+#contents .detail .schedule_manage h4{
+    font-family: 'Pretendard-Bold';
+    font-size: 20px;
+}
+#contents .detail .schedule_manage >div{
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+/* schedule_manage - schedule_place */
+#contents .detail .schedule_manage .schedule_place{
+    width: 100%;
+    height: 416px;
+}
+#contents .detail .schedule_manage .schedule_place .search_input{
+    width: 390px;
+    height: 43px;
+    border-radius: 10px;
+    background-color: #E1E1E1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+#contents .detail .schedule_manage .schedule_place .search_input input{
+    width: 356px;
+    height: 21px;
+    border-width: 0;
+    outline: none;
+    background: none;
+    font-size: 18px;
+}
+#contents .detail .schedule_manage .schedule_place >span{
+    font-family: 'Pretendard-Bold';
+    font-size: 20px;
+    display: inline-block;
+    margin-top: 20px;
+}
+#contents .detail .schedule_manage .schedule_place .place_list{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+#contents .detail .schedule_manage .schedule_place .place{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+#contents .detail .schedule_manage .schedule_place .place_img{
+    width: 67px;
+    height: 67px;
+    background-color: #D9D9D9;
+    border-radius: 10px;
+    overflow: hidden;
+}
+#contents .detail .schedule_manage .schedule_place .place_info{
+    position: absolute;
+    left: 80px;
+    display: flex;
+    flex-direction: column;
+}
+#contents .detail .schedule_manage .schedule_place .place_info .place_name{
+    font-family: 'Pretendard-Bold';
+    font-size: 20px;
+    display: flex;
+    gap: 8px;
+}
+#contents .detail .schedule_manage .schedule_place .place_info >span{
+    font-size: 19px;
+}
+#contents .detail .schedule_manage .schedule_place .place_info .place_type{
+    height: 22px;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px 5px 3px 5px;
+    background-color: #D30000;
+    color: #fff;
+    border-radius: 10px;
+}
+#contents .detail .schedule_manage .schedule_place .place_info >span{
+    font-size: 15px;
+    color: #828282;
+}
+#contents .detail .schedule_manage .schedule_place .place_ratings{
+    display: flex;
+    margin-top: 2px;
+}
+#contents .detail .schedule_manage .schedule_place .img_rating{
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#contents .detail .schedule_manage .schedule_place .place_ratings >span{
+    font-size: 15px;
+    color: #828282;
+}
+#contents .detail .schedule_manage .schedule_place .place_rating{
+    display: inline-block;
+    margin-left: 6px;
+    margin-top: 2px;
+}
+#contents .detail .schedule_manage .schedule_place .place_ratings_total{
+    display: inline-block;
+    margin-left: 2px;
+    margin-top: 2px;
+}
+#contents .detail .schedule_manage .schedule_place .place_address{
+    display: inline-block;
+    width: 243px;
+    height: 18px;
+    margin-top: 6px;
+}
+#contents .detail .schedule_manage .schedule_place .btn_add_place{
+    width: 54px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+}
+#contents .detail .schedule_manage .schedule_place .btn_add_place span{
+    font-size: 15px;
+    color: #fff;
+}
+#contents .detail .schedule_manage .schedule_place .place_separator{
+    width: 390px;
+    height: 1px;
+    background-color: #EEEEEE;
+}
+/* schedule_manage - time_choose */
+#contents .detail .schedule_manage .time_choose{
+    width: 100%;
+    height: 136px;
+}
+#contents .detail .schedule_manage .time_choose >div{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+#contents .detail .schedule_manage .time_choose >div >div{
+    display: flex;
+    gap: 34px;
+    align-items: center;
+}
+#contents .detail .schedule_manage .time_choose >div >div >span{
+    font-family: 'Pretendard-Bold';
+    font-size: 17px;
+}
+#contents .detail .schedule_manage .time_choose >div >div >input{
+    width: 177px;
+    height: 38px;
+}
+/* schedule_manage - cost_manage */
+#contents .detail .schedule_manage .cost_manage{
+    width: 100%;
+    height: 292px;
+    position: relative;
+}
+#contents .detail .schedule_manage .cost_manage .cost_list{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: 10px;
+}
+#contents .detail .schedule_manage .cost_manage .cost{
+    padding: 10px;
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+#contents .detail .schedule_manage .cost_manage .cost .cost_separator{
+    width: 6px;
+    height: 6px;
+    background-color: #006BDF;
+}
+#contents .detail .schedule_manage .cost_manage .cost .cost_name{
+    font-size: 18px;
+    display: inline-block;
+    margin-left: 10px;
+}
+#contents .detail .schedule_manage .cost_manage .cost .cost_payer{
+    font-size: 16px;
+    color: #828282;
+    display: inline-block;
+    margin-left: 15px;
+    
+}
+#contents .detail .schedule_manage .cost_manage .cost .cost_amount{
+    font-size: 16px;
+    color: #828282;
+    display: inline-block;
+    position: absolute;
+    right: 35px;
+}
+#contents .detail .schedule_manage .cost_manage .cost .cost_remove{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    right: 0px;
+}
+#contents .detail .schedule_manage .cost_manage .cost_amounts_total{
+    display: flex;
+    gap: 7px;
+    justify-content: right;
+    align-items: center;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+}
+#contents .detail .schedule_manage .cost_manage .cost_amounts_total span{
+    font-family: 'Pretendard-Bold';
+    font-size: 18px;
+}
+#contents .detail .schedule_manage .cost_manage .cost_add{
+    display: flex;
+    gap: 5px;
+    margin: 8px 15px 11px 15px;
+    padding: 4px 5px 4px 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+#contents .detail .schedule_manage .cost_manage .cost_add:hover{
+    background-color: #EEEEEE;
+}
+#contents .detail .schedule_manage .cost_manage .cost_add div{
+    width: 19px;
+    height: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#contents .detail .schedule_manage .cost_manage .cost_add span{
+    font-family: 'Pretendard-Bold';
+    font-size: 15px;
+    color: #61B3FF;
+    padding-top: 1px;
+}
 
 /* holder */
 #contents .holder{
@@ -327,16 +710,21 @@ header{
 #contents .holder .plan .plan_holder section{
     width: 100%;
     position: absolute;
+    transition-property: top;
+    transition-duration: 0.5s;
 }
 /*
     section 열람시 간격 761px, section간 간격: 79px 158px 237px
     일정짜기 열람: 921px
 */
-#contents .holder .plan_holder section:nth-of-type(1) { top: 921px; }
-#contents .holder .plan_holder section:nth-of-type(2) { top: 1000px; }
-#contents .holder .plan_holder section:nth-of-type(3) { top: 1079px; }
-#contents .holder .plan_holder section:nth-of-type(4) { top: 1159px; }
-#contents .holder .plan_holder section:last-of-type { top: 921px; }
+#contents .holder .plan_holder section:nth-of-type(1) { top: 0px; }
+#contents .holder .plan_holder section:nth-of-type(2) { top: 763px; }
+#contents .holder .plan_holder section:nth-of-type(3) { top: 842px; }
+#contents .holder .plan_holder section:nth-of-type(4) { top: 921px; }
+#contents .holder .plan_holder section:last-of-type {
+    top: 921px;
+    visibility: hidden;
+}
 /* plan inner */
 #contents .holder .plan section .box{
     height: 781px;
@@ -676,38 +1064,30 @@ header{
     border-top: 2px solid #EEEEEE;
     position: relative;
 }
-#contents .holder .next a{
+#contents .holder .next button{
     position: absolute;
     top: 16px;
     right: 16px;
-}
-#contents .holder .next a:hover{
-    background-color: #005FC5;
-}
-#contents .holder .next a div{
     display: flex;
     justify-content: center;
     align-items: center;
-}
-#contents .holder .next a div p{
     font-family: 'Pretendard-Bold';
     color: #fff;
+    border: 0px solid #000;
+    cursor: pointer;
+}
+#contents .holder .next button:hover{
+    background-color: #005FC5;
 }
 #contents .holder .next .btn_schedule{
     width: 110px;
     height: 50px;
-}
-#contents .holder .next .btn_schedule p{
     font-size: 20px;
 }
 #contents .holder .next .btn_save{
     width: 89px;
     height: 50px;
-}
-#contents .holder .next .btn_save p{
     font-size: 22px;
-}
-#contents .holder .next a:nth-of-type(2){
     visibility: hidden;
 }
 

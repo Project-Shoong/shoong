@@ -82,9 +82,7 @@
             <div id="contents">
                 <div class="map">
                     <!-- 지도 -->
-                    <div class="cover">
-                        
-                    </div>
+                    <span class="cover"></span>
                     
                 </div>
                 <div class="detail">
@@ -164,8 +162,110 @@
                         </div>
                     </div>
                     <div class="box place_choose">
+                        <label for="search_place"><h3>장소 추가</h3></label>
+                        <div class="search_input">
+                            <input type="text" id="search_place" name="search_place" placeholder="장소 이름을 검색해보세요">
+                        </div>
+                        <span>검색 결과</span>
+                        <div class="place_list">
+                            <div class="place">
+                                <div class="place_img">
+                                    <img src="" alt="">
+                                </div>
+                                <div class="place_info">
+                                    <div class="place_name">
+                                        <span>장소명</span>
+                                        <div class="place_type">구분</div>
+                                    </div>
+                                    <div class="place_ratings">
+                                        <div class="img_rating">
+                                            <img src="../../static/images/rating.png" alt="">
+                                        </div>
+                                        <span class="place_rating">5.0</span>
+                                        <span class="place_ratings_total">(3)</span>
+                                    </div>
+                                    <span class="place_address">주소</span>
+                                </div>
+                                <div class="btn btn_add_place">
+                                    <span>추&nbsp&nbsp가</span>
+                                </div>
+                            </div>
+                            <span class="place_separator"></span>
+                        </div>
                     </div>
                     <div class="box schedule_manage">
+                        <h3>일정 관리</h3>
+                        <div>
+                            <div class="schedule_place">
+                                <label for="schedule_search_place"><h4>장소 추가</h4></label>
+                                <div class="search_input">
+                                    <input type="text" id="schedule_search_place" name="schedule_search_place" placeholder="추가된 장소를 검색해보세요">
+                                </div>
+                                <span>검색 결과</span>
+                                <div class="place_list">
+                                    <div class="place">
+                                        <div class="place_img">
+                                            <img src="" alt="">
+                                        </div>
+                                        <div class="place_info">
+                                            <div class="place_name">
+                                                <span>장소명</span>
+                                                <div class="place_type">구분</div>
+                                            </div>
+                                            <div class="place_ratings">
+                                                <div class="img_rating">
+                                                    <img src="../../static/images/rating.png" alt="">
+                                                </div>
+                                                <span class="place_rating">5.0</span>
+                                                <span class="place_ratings_total">(3)</span>
+                                            </div>
+                                            <span class="place_address">주소</span>
+                                        </div>
+                                        <div class="btn btn_add_place">
+                                            <span>선&nbsp&nbsp택</span>
+                                        </div>
+                                    </div>
+                                    <span class="place_separator"></span>
+                                </div>
+                            </div>
+                            <div class="time_choose">
+                                <h4>장소 추가</h4>
+                                <div>
+                                    <div>
+                                        <span>시작 시간</span>
+                                        <input type="text">
+                                    </div>
+                                    <div>
+                                        <span>종료 시간</span>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="cost_manage">
+                                <h4>비용 관리</h4>
+                                <div class="cost_list">
+                                    <div class="cost">
+                                        <span class="cost_separator"></span>
+                                        <span class="cost_name">항목명</span>
+                                        <span class="cost_payer">이름</span>
+                                        <span class="cost_amount">10원</span>
+                                        <div class="cost_remove">
+                                            <img src="../../static/images/remove.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="cost_add">
+                                    <div>
+                                        <img src="../../static/images/add.png" alt="">
+                                    </div>
+                                    <span>비용 추가</span>
+                                </div>
+                                <div class="cost_amounts_total">
+                                    <span>합계 : </span>
+                                    <span>0원</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="holder">
@@ -450,16 +550,12 @@
                     </div>
                     <div class="next">
                         <!-- 버튼 영역 -->
-                        <a href="" class="btn">
-                            <div class="btn_schedule">
-                                <p>일정 짜기</p>
-                            </div>
-                        </a>
-                        <a href="" class="btn">
-                            <div class="btn_save">
-                                <p>저  장</p>
-                            </div>
-                        </a>
+                        <button class="btn btn_schedule">
+                            <p>일정 짜기</p>
+                        </button>
+                        <button class="btn btn_save">
+                            <p>저&nbsp;&nbsp;장</p>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -472,6 +568,105 @@
     </div>
 </body>
 <script>
+    // contents의 각 tab 변수
+    const members_tab = $('.plan_holder').children('section:eq(0)');
+    const destinations_tab = $('.plan_holder').children('section:eq(1)');
+    const date_tab = $('.plan_holder').children('section:eq(2)');
+    const places_tab = $('.plan_holder').children('section:eq(3)');
+    const index_tab = $('.plan_holder').children('section:eq(4)');
+    const schedules_tab = $('.plan').children('section');
+    // tab별 추가 화면
+    const member_invite = $('.detail').children('div:eq(0)');
+    const destination_choose = $('.detail').children('div:eq(1)');
+    const date_choose = $('.detail').children('div:eq(2)');
+    const place_choose = $('.detail').children('div:eq(3)');
+    const schedule_manage = $('.detail').children('div:eq(4)');
+    // 일정 버튼
+    const btn_schedule = $('.btn_schedule');
+    const btn_save = $('.btn_save');
 
+    // tab 이벤트
+    $(function() {
+        // 클릭 전환 이벤트
+        members_tab.click(function() {
+            $(this).css('top','0px');
+            destinations_tab.css('top','763px');
+            date_tab.css('top','842px');
+            places_tab.css('top','921px');
+
+            member_invite.css('visibility', 'visible');
+            destination_choose.css('visibility', 'hidden');
+            date_choose.css('visibility', 'hidden');
+            place_choose.css('visibility', 'hidden');
+        })      
+        destinations_tab.click(function() {
+            members_tab.css('top','0px');
+            $(this).css('top','79px');
+            date_tab.css('top','842px');
+            places_tab.css('top','921px');
+
+            member_invite.css('visibility', 'hidden');
+            destination_choose.css('visibility', 'visible');
+            date_choose.css('visibility', 'hidden');
+            place_choose.css('visibility', 'hidden');
+        })      
+        date_tab.click(function() {
+            members_tab.css('top','0px');
+            destinations_tab.css('top','79px');
+            $(this).css('top','158px');
+            places_tab.css('top','921px');
+
+            member_invite.css('visibility', 'hidden');
+            destination_choose.css('visibility', 'hidden');
+            date_choose.css('visibility', 'visible');
+            place_choose.css('visibility', 'hidden');
+        })      
+        places_tab.click(function() {
+            members_tab.css('top','0px');
+            destinations_tab.css('top','79px');
+            date_tab.css('top','158px');
+            $(this).css('top','237px');
+
+            member_invite.css('visibility', 'hidden');
+            destination_choose.css('visibility', 'hidden');
+            date_choose.css('visibility', 'hidden');
+            place_choose.css('visibility', 'visible');
+        })
+        index_tab.click(function() {
+            members_tab.css('top','0px');
+            destinations_tab.css('top','763px');
+            date_tab.css('top','842px');
+            places_tab.css('top','921px');
+
+            member_invite.css('visibility', 'visible');
+            destination_choose.css('visibility', 'hidden');
+            date_choose.css('visibility', 'hidden');
+            place_choose.css('visibility', 'hidden');
+            schedule_manage.css('visibility', 'hidden');
+
+            btn_schedule.css('visibility', 'visible');
+            btn_save.css('visibility', 'hidden');
+        })
+        btn_schedule.click(function() {
+            members_tab.css('top','1080px');
+            destinations_tab.css('top','1080px');
+            date_tab.css('top','1080px');
+            places_tab.css('top','1080px');
+            // setTimeout(function() {
+                index_tab.css('visibility', 'visible');
+            // },500)
+
+            member_invite.css('visibility', 'hidden');
+            destination_choose.css('visibility', 'hidden');
+            date_choose.css('visibility', 'hidden');
+            place_choose.css('visibility', 'hidden');
+            schedule_manage.css('visibility', 'visible');
+        
+            $(this).css('visibility', 'hidden');
+            btn_save.css('visibility', 'visible');
+        })
+    })
+    
+    
 </script>
 </html>
