@@ -1,5 +1,11 @@
 package com.example.demo.mapper;
 
-public interface PlanMapper {
+import org.apache.ibatis.annotations.Mapper;
 
+import com.example.demo.domain.PlanDTO;
+
+@Mapper
+public interface PlanMapper {
+	int insertPlan(PlanDTO plan);
+	long getPlanIdByUserID();
 }

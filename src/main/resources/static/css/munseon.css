@@ -97,8 +97,10 @@ header{
 }
 /* detail - member_invite */
 #contents .detail .member_invite{
-    width: 658px;
-    height: 592px;
+    /* width: 658px;
+    height: 592px; */
+    width: 450px;
+    height: 540px;
     position: absolute;
     top: 244px;
     right: 420px;
@@ -682,7 +684,7 @@ header{
 
 /* holder */
 #contents .holder{
-    width: 400px;
+    width: 384px;
     height: 100vh;
     background-color: #fff;
     position: relative;
@@ -697,7 +699,8 @@ header{
 
 /* plan */
 #contents .holder .plan{
-    height: 874px;
+    /* height: 874px; */
+    height: calc(100vh - 82px);
     border-radius: 20px 20px 0px 0px;
     position: relative;
     overflow: hidden;
@@ -714,21 +717,29 @@ header{
     transition-duration: 0.5s;
 }
 /*
-    section 열람시 간격 761px, section간 간격: 79px 158px 237px
-    일정짜기 열람: 795px
+    index 간격 71px
 */
 #contents .holder .plan_holder section:nth-of-type(1) { top: 0px; }
-#contents .holder .plan_holder section:nth-of-type(2) { top: 635px; }
-#contents .holder .plan_holder section:nth-of-type(3) { top: 714px; }
-#contents .holder .plan_holder section:nth-of-type(4) { top: 795px; }
+#contents .holder .plan_holder section:nth-of-type(2) {
+    /* top: 635px; */
+    top: calc(100vh - 295px);
+}
+#contents .holder .plan_holder section:nth-of-type(3) {
+    /* top: 714px; */
+    top: calc(100vh - 224px);
+}
+#contents .holder .plan_holder section:nth-of-type(4) {
+    /* top: 795px; */
+    top: calc(100vh - 153px);
+}
 #contents .holder .plan_holder section:last-of-type {
-    top: 795px;
+    top: calc(100vh - 153px);
     visibility: hidden;
 }
-/* plan inner */
+/* plan common */
 #contents .holder .plan section .box{
     height: 781px;
-    padding: 30px;
+    padding-bottom: 30px;
     background-color: #fff;
     border-radius: 20px 20px 0px 0px;
     box-shadow: 0 -5px 10px -5px rgba(0, 0, 0, 0.25);
@@ -736,59 +747,70 @@ header{
 #contents .holder .plan >section .box{
     height: 938px;
     position: relative;
+}#contents .holder .plan section .box >div{
+    padding: 0px 30px 0px 30px;
 }
 #contents .holder .plan_holder section:last-of-type .box{
     height: 82px;
 }
 /* plan index */
 #contents .holder .plan section .box .index{
+    height: 82px;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 27px;
+    align-items: center;
+    text-decoration-color: #828282 !important;
+    cursor: pointer;
+}
+#contents .holder .plan >section .box .index{
+    cursor: default;
 }
 #contents .holder .plan section .box .index h2{
     font-family: 'Pretendard-Bold';
-    font-size: 21px;
+    font-size: 18px;
 }
 #contents .holder .plan section .box .index span{
     font-family: 'Pretendard-Bold';
-    font-size: 22px;
+    font-size: 19px;
+}
+#contents .holder .plan_holder section:first-of-type .box .index{
+    cursor: default;
 }
 #contents .holder .plan_holder section:last-of-type .box .index h2{
-    font-size: 22px;
+    font-size: 18px;
 }
 /* plan description */
 #contents .holder .plan section .box .description{
-    margin-bottom: 34px;
+    margin-bottom: 35px;
 }
 #contents .holder .plan section .box .description h3{
     font-family: 'Pretendard-Bold';
-    font-size: 25px;
+    font-size: 22px;
     margin-bottom: 10px;
 }
 #contents .holder .plan section .box .description p{
-    font-size: 18px;
+    font-size: 14px;
     color: #828282;
 }
 /* plan content */
 #contents .holder .plan section .box .content{
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
 }
 #contents .holder .plan section .box .content >span{
     font-family: 'Pretendard-Bold';
-    font-size: 18px;
+    font-size: 16px;
 }
 /* plan content group */
 #contents .holder .plan .members{
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
 }
 #contents .holder .plan .members .member{
     display: flex;
-    gap: 22px;
+    gap: 20px;
 }
 #contents .holder .plan .members .member_img{
     width: 55px;
@@ -798,36 +820,37 @@ header{
     overflow: hidden;
 }
 #contents .holder .plan .members .member_name{
-    width: 191px;
+    width: 165px;
     display: flex;
     flex-direction: column;
-    padding-top: 6px;
-    padding-bottom: 2px;
+    padding-top: 8px;
+    padding-bottom: 5px;
 }
 #contents .holder .plan .members .member_name span:nth-of-type(1){
     font-family: 'Pretendard-Bold';
-    font-size: 19px;
+    font-size: 16px;
 }
 #contents .holder .plan .members .member_name span:nth-of-type(2){
-    font-size: 20px;
+    font-size: 16px;
 }
 #contents .holder .plan .members .member_rule{
     display: flex;
     align-items: center;
 }
 #contents .holder .plan .members .member_rule span{
-    font-size: 19px;
+    font-size: 16px;
 }
 #contents .holder .plan .members .member_separator{
-    width: 263px;
+    width: 245px;
     height: 1px;
     background-color: #EEEEEE;
-    margin-left: 77px;
+    margin-left: 75px;
 }
 /* plan content destination */
 #contents .holder .plan .destinations{
     display: flex;
-    gap: 50px;
+    gap: 20px;
+    justify-content: space-between;
     flex-wrap: wrap;
 }
 #contents .holder .plan .destinations .destination{
@@ -837,81 +860,90 @@ header{
     align-items: center;
 }
 #contents .holder .plan .destinations .destination_img {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
+    width: 83px;
+    height: 75px;
+    border-radius: 15%;
     background-color: #000;
     overflow: hidden;
 }
 #contents .holder .plan .destinations .destination_name span{
-    font-size: 19px;
+    font-size: 16px;
 }
 /* plan content date */
 #contents .holder .plan .date{
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
+    align-items: center;
 }
 #contents .holder .plan .date span{
-    font-size: 19px;
+    font-size: 17px;
+}
+#contents .holder .plan .date span:first-of-type{
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: #006BDF;
+    margin-left: 6px;
 }
 /* plan content place */
 #contents .holder .plan .places{
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 13px;
 }
 #contents .holder .plan .place{
     display: flex;
     justify-content: space-between;
 }
 #contents .holder .plan .place_img{
-    width: 80px;
-    height: 53px;
-    border-radius: 10px;
+    width: 70px;
+    height: 55px;
+    border-radius: 11px;
     background-color: #000;
 }
 #contents .holder .plan .place_info{
-    width: 208px;
-    padding-top: 6px;
-    padding-bottom: 4px;
+    width: 193px;
+    padding-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 #contents .holder .plan .place_name{
     display: flex;
     flex-direction: row;
     gap: 6px;
+    
 }
 #contents .holder .plan .place_name >span{
-    font-size: 19px;
+    font-size: 16px;
 }
 #contents .holder .plan .place_name div{
-    width: 33px;
-    height: 22px;
-    border-radius: 10px;
+    border-radius: 8.5px;
     background-color: #00A538;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 2.5px 4px;
 }
 #contents .holder .plan .place_name div span{
-    font-family: 'Pretendard-Bold';
-    font-size: 13px;
+    font-size: 12px;
     color: #fff;
 }
 #contents .holder .plan .place_info >span{
-    font-size: 15px;
+    font-size: 14px;
     color: #828282;
 }
 #contents .holder .plan .place_remove{
     width: 20px;
     height: 20px;
-    background-color: #000;
     margin-top: 16px;
+    margin-right: 10px;
 }
 #contents .holder .plan .places .place_separator{
-    width: 244px;
+    width: 238px;
     height: 1px;
     background-color: #EEEEEE;
-    margin-left: 96px;
+    margin-left: 87px;
 }
 /* plan content schedule */
 #contents .holder .plan .schedules{
@@ -1060,7 +1092,7 @@ header{
 
 /* next */
 #contents .holder .next{
-    height: 79px;
+    height: 82px;
     border-top: 2px solid #EEEEEE;
     position: relative;
 }
