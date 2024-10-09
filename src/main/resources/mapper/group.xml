@@ -5,4 +5,7 @@
 	<insert id="insertGroup">
 		insert into `group` values(#{group.rule}, #{group.planId}, #{group.userId})
 	</insert>
+	<select id="getMemberListByPlanId">
+		select `group`.rule, `group`.plan_id, `group`.user_id, nickname from `group`, `user` where `group`.user_id = `user`.user_id and plan_id = #{planId};
+	</select>
 </mapper>

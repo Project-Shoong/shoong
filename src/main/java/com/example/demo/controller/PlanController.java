@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.service.PlanService;
 
@@ -21,7 +22,7 @@ public class PlanController {
 	private PlanService service;
 	
 	@GetMapping("regist")
-	public String regist(HttpServletRequest req, HttpServletResponse resp, Model model) {
+	public String regist(HttpServletRequest req, HttpServletResponse resp, RedirectAttributes attributes) {
 		HttpSession session = req.getSession();
 		String userId = (String)session.getAttribute("loginUser");
 //		로그인 확인 여부
@@ -29,7 +30,7 @@ public class PlanController {
 			long planId = service.regist(userId);
 //			계획 등록 여부
 			if(planId != -1) {
-				model.addAttribute("planId", planId);
+				attributes.addFlashAttribute("planId", planId+"");
 				return "redirect:/plan/write";
 			}
 			else {
@@ -49,6 +50,6 @@ public class PlanController {
 	}
 	
 	@GetMapping("write")
-	public void write(long planId, Model model) {
+	public void write(Model model) {
 	}
 }

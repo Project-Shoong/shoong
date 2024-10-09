@@ -30,6 +30,10 @@ a{
     background-color: #006BDF;
     border-radius: 10px;
 }
+.btn:hover{
+    transition-duration: 0.5s;
+    background-color: #005FC5;
+}
 
 /* wrap */
 #wrap{
@@ -68,6 +72,7 @@ header{
     white-space: nowrap;
 }
 #header .menu ul li:hover{
+    transition-duration: 0.3s;
     background-color: #005FC5;
 }
 
@@ -102,15 +107,15 @@ header{
     width: 450px;
     height: 540px;
     position: absolute;
-    top: 244px;
-    right: 420px;
+    top: 208px;
+    left: 560px;
 }
 #contents .detail .member_invite label h3{
     font-family: 'Pretendard-Bold';
-    font-size: 22px;
+    font-size: 18px;
 }
 #contents .detail .member_invite .search_input{
-    width: 598px;
+    width: 390px;
     height: 43px;
     border-radius: 10px;
     background-color: #E1E1E1;
@@ -120,18 +125,18 @@ header{
     align-items: center;
 }
 #contents .detail .member_invite .search_input input{
-    width: 566px;
+    width: 360px;
     height: 21px;
     border-width: 0;
     outline: none;
     background: none;
-    font-size: 18px;
+    font-size: 16px;
 }
 #contents .detail .member_invite >span{
     font-family: 'Pretendard-Bold';
-    font-size: 20px;
+    font-size: 17px;
     display: inline-block;
-    margin-top: 30px;
+    margin-top: 25px;
 }
 #contents .detail .member_invite .user_list{
     display: flex;
@@ -153,45 +158,43 @@ header{
 }
 #contents .detail .member_invite .user_info{
     position: absolute;
-    left: 76px;
+    left: 74px;
     display: flex;
-    gap: 20px;
+    gap: 17px;
 }
 #contents .detail .member_invite .user_info span:first-of-type{
     font-family: 'Pretendard-Bold';
-    font-size: 20px;
+    font-size: 17px;
 }
 #contents .detail .member_invite .user_info span:nth-of-type(2){
-    font-size: 20px;
+    font-size: 17px;
     color: #828282;
 }
 #contents .detail .member_invite .btn_invite{
-    width: 67px;
+    width: 63px;
     height: 39px;
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 #contents .detail .member_invite .btn_invite span{
-    font-size: 18px;
+    font-size: 16px;
     color: #fff;
-}
-#contents .detail .member_invite .btn_invited{
-    background-color: #E1E1E1;
 }
 
 /* detail - destination_choose */
 #contents .detail .destination_choose{
     width: 540px;
-    height: 650px;
+    height: 600px;
     position: absolute;
-    top: 215px;
-    right: 479px;
-    /* visibility: hidden; */
+    top: 180px;
+    left: 510px;
+    visibility: hidden;
 }
 #contents .detail .destination_choose label h3{
     font-family: 'Pretendard-Bold';
-    font-size: 22px;
+    font-size: 18px;
 }
 #contents .detail .destination_choose .search_input{
     width: 480px;
@@ -209,7 +212,7 @@ header{
     border-width: 0;
     outline: none;
     background: none;
-    font-size: 18px;
+    font-size: 16px;
 }
 #contents .detail .destination_choose .continents{
     height: 37px;
@@ -232,7 +235,7 @@ header{
 }
 #contents .detail .destination_choose >span{
     font-family: 'Pretendard-Bold';
-    font-size: 20px;
+    font-size: 16px;
     display: inline-block;
     margin-top: 20px;
 }
@@ -275,7 +278,7 @@ header{
     position: absolute;
     top: 252px;
     right: 524px;
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 #contents .detail .date_choose h3{
     font-family: 'Pretendard-Bold';
@@ -294,7 +297,7 @@ header{
     position: absolute;
     top: 10px;
     right: 1000px;
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 #contents .detail .place_choose label h3{
     font-family: 'Pretendard-Bold';
@@ -428,7 +431,7 @@ header{
     position: absolute;
     top: 10px;
     right: 1000px;
-    /* visibility: hidden; */
+    visibility: hidden;
 }
 #contents .detail .schedule_manage h3{
     font-family: 'Pretendard-Bold';
@@ -1108,9 +1111,9 @@ header{
     border: 0px solid #000;
     cursor: pointer;
 }
-#contents .holder .next button:hover{
+/* #contents .holder .next button:hover{
     background-color: #005FC5;
-}
+} */
 #contents .holder .next .btn_schedule{
     width: 110px;
     height: 50px;
@@ -1140,6 +1143,6 @@ header{
     box-shadow: 0 4px 4px 1px rgba(0, 0, 0, 0.25), 0 0 5px 0 #006BDF;
     cursor: pointer;
 }
-#fab .fab_btn:hover{
+/* #fab .fab_btn:hover{
     background-color: #005FC5;
-}
+} */

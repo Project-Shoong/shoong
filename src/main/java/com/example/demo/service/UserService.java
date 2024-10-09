@@ -1,5 +1,9 @@
 package com.example.demo.service;
 
-public interface UserService {
+import java.util.List;
 
+import com.example.demo.domain.UserDTO;
+
+public interface UserService {
+	List<UserDTO> getUsersByKeyword(String keyword);
 }

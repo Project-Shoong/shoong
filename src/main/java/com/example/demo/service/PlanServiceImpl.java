@@ -24,7 +24,6 @@ public class PlanServiceImpl implements PlanService {
 		
 //		1. 계획 insert
 		if(pmapper.insertPlan(plan)==1) {
-			System.out.println(plan.getPlanId());
 			group.setRule("그룹장");
 			group.setPlanId(plan.getPlanId());
 			group.setUserId(userId);

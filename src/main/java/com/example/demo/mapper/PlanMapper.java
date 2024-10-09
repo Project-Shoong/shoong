@@ -7,5 +7,4 @@ import com.example.demo.domain.PlanDTO;
 @Mapper
 public interface PlanMapper {
 	int insertPlan(PlanDTO plan);
-	long getPlanIdByUserID();
 }
