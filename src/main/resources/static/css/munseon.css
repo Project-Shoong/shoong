@@ -217,7 +217,7 @@ header{
 #contents .detail .destination_choose .continents{
     height: 37px;
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
     margin-top: 20px;
 }
 #contents .detail .destination_choose .btn_continent{
@@ -228,8 +228,8 @@ header{
     padding: 0px 10px 0px 10px;
     cursor: pointer;
 }
-#contents .detail .destination_choose .btn_clicked{
-    border: 1px solid #DDDDDD;
+#contents .detail .destination_choose .btn_unclicked{
+    box-shadow: 0 0 0 1px #DDDDDD inset;
     color: #161616;
     background-color: #fff;
 }
@@ -240,16 +240,25 @@ header{
     margin-top: 20px;
 }
 #contents .detail .destination_choose .destination_list{
-    height: 380px;
+    height: 340px;
     display: flex;
     flex-wrap: wrap;
-    gap: 24px;
+    gap: 12px;
     margin-top: 20px;
-    overflow: hidden;
+    overflow-y: scroll;
+}
+#contents .detail .destination_choose .destination_list::-webkit-scrollbar {
+    width: 15px;
+}
+#contents .detail .destination_choose .destination_list::-webkit-scrollbar-thumb {
+    background-color: #828282;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 3.5px solid transparent;
 }
 #contents .detail .destination_choose .destination{
-    width: 228px;
-    height: 140px;
+    width: 225px;
+    height: 155px;
     border-radius: 20px;
     overflow: hidden;
     position: relative;
@@ -260,15 +269,22 @@ header{
 }
 #contents .detail .destination_choose .destination_img{
     width: 228px;
-    height: 140px;
+    height: 155px;
     border-radius: 20px;
     overflow: hidden;
-    background-color: #DDD;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+#contents .detail .destination_choose .destination_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+	opacity: 0.7;
 }
 #contents .detail .destination_choose .destination >span{
     font-family: 'Pretendard-Bold';
-    font-size: 40px;
+    font-size: 25px;
     position: absolute;
+    color: white;
 }
 
 /* detail - date_choose */
@@ -849,27 +865,32 @@ header{
     background-color: #EEEEEE;
     margin-left: 75px;
 }
-/* plan content destination */
-#contents .holder .plan .destinations{
+/* plan content selected_destination */
+#contents .holder .plan .selected_destination_list{
     display: flex;
-    gap: 20px;
-    justify-content: space-between;
+    gap: 37px;
     flex-wrap: wrap;
 }
-#contents .holder .plan .destinations .destination{
+#contents .holder .plan .selected_destination_list .selected_destination{
     display: flex;
     flex-direction: column;
     gap: 15px;
     align-items: center;
+    cursor: pointer;
 }
-#contents .holder .plan .destinations .destination_img {
+#contents .holder .plan .selected_destination_list .selected_destination_img {
     width: 83px;
     height: 75px;
     border-radius: 15%;
-    background-color: #000;
     overflow: hidden;
+    background-color: #000;
 }
-#contents .holder .plan .destinations .destination_name span{
+#contents .holder .plan .selected_destination_list .selected_destination_img img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#contents .holder .plan .selected_destination_list .selected_destination_name span{
     font-size: 16px;
 }
 /* plan content date */

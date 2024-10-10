@@ -23,6 +23,17 @@ const index_index = index_tab.find('.index');
 const btn_schedule = $('.btn_schedule');
 const btn_save = $('.btn_save');
 
+// 도시 및 나라 선택
+// 대륙 카테고리 버튼
+const continents = $('.continents').children('button');
+const world = $('.continents').children('button:eq(0)');
+const southeast_asia = $('.continents').children('button:eq(1)');
+const asia = $('.continents').children('button:eq(2)');
+const oceania = $('.continents').children('button:eq(3)');
+const europe = $('.continents').children('button:eq(4)');
+const america = $('.continents').children('button:eq(5)');
+let continent = '전체';
+
 // index - tab 전환시 커서 변경 이벤트
 function changeCursorStyle(e) {
     plan_indexes.css('cursor', 'pointer');
@@ -31,10 +42,6 @@ function changeCursorStyle(e) {
     } else {
         member_index.css('cursor','default');
     }
-}
-
-function inviteOff(e) {
-	$(e.currentTarget).off('click.invite');
 }
 
 $(function() {
@@ -163,5 +170,30 @@ $(function() {
 		console.log("click");
         $(this).off("click");
     })
+
+    // 도시 및 나라 선택
+    // 대륙 카테고리 - click
+	const getContinentVal = function() {
+		continents.addClass('btn_unclicked');
+		$(this).removeClass('btn_unclicked');
+		
+		continent = $(this).html(); // == '전체' ? '' : $(this).html();
+		// ajax 호출 - 목적지 검색(카테고리명 전달)
+		searchDefaultDestination();
+	}
+    $('.btn_continent').click(getContinentVal);
+	
+	// 기본목적지 - click
+	$(document).on("click", ".destination", function(e) {
+		const name = $(e.currentTarget).find('span').html();
+		const image = $(e.currentTarget).find('img').attr('src');
+		addDefaultDestination(name, image);
+	})
+	
+	$(document).on("click", ".selected_destination", function(e) {
+		const name = $(e.currentTarget).find('span').html();
+		removeDefaultDestination(name);
+	})
+	
 })
 
