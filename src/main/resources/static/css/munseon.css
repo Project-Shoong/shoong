@@ -22,10 +22,6 @@ main{
 a{
     color: #161616;
 }
-.modal{
-    border-radius: 20px;
-    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
-}
 .btn{
     background-color: #006BDF;
     border-radius: 10px;
@@ -235,7 +231,7 @@ header{
 }
 #contents .detail .destination_choose >span{
     font-family: 'Pretendard-Bold';
-    font-size: 16px;
+    font-size: 17px;
     display: inline-block;
     margin-top: 20px;
 }
@@ -289,38 +285,42 @@ header{
 
 /* detail - date_choose */
 #contents .detail .date_choose{
-    width: 450px;
-    height: 576px;
+    width: 581.2px;
+    height: 364px;
     position: absolute;
     top: 252px;
     right: 524px;
+    padding: 0;
+    box-shadow: none;
     visibility: hidden;
+    background-color: transparent;
 }
 #contents .detail .date_choose h3{
+    margin: 30px;
     font-family: 'Pretendard-Bold';
-    font-size: 22px;
+    font-size: 16px;
+    visibility: hidden;
 }
 #contents .detail .date_choose .box_date{
     width: 100%;
-    height: 470px;
 }
 
 
 /* detail - place_choose */
 #contents .detail .place_choose{
-    width: 450px;
+    width: 410px;
     height: 630px;
     position: absolute;
-    top: 10px;
-    right: 1000px;
+    top: 5px;
+    left: 270px;
     visibility: hidden;
 }
 #contents .detail .place_choose label h3{
     font-family: 'Pretendard-Bold';
-    font-size: 22px;
+    font-size: 18px;
 }
 #contents .detail .place_choose .search_input{
-    width: 390px;
+    width: 350px;
     height: 43px;
     border-radius: 10px;
     background-color: #E1E1E1;
@@ -330,23 +330,23 @@ header{
     margin-top: 20px;
 }
 #contents .detail .place_choose .search_input input{
-    width: 356px;
+    width: 320px;
     height: 21px;
     border-width: 0;
     outline: none;
     background: none;
-    font-size: 18px;
+    font-size: 16px;
 }
 #contents .detail .place_choose >span{
     font-family: 'Pretendard-Bold';
-    font-size: 20px;
+    font-size: 17px;
     display: inline-block;
     margin-top: 20px;
 }
 #contents .detail .place_choose .place_list{
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 10px;
     margin-top: 20px;
 }
 #contents .detail .place_choose .place{
@@ -363,18 +363,20 @@ header{
 }
 #contents .detail .place_choose .place_info{
     position: absolute;
-    left: 80px;
+    left: 82px;
     display: flex;
     flex-direction: column;
 }
 #contents .detail .place_choose .place_info .place_name{
     font-family: 'Pretendard-Bold';
-    font-size: 20px;
+    font-size: 18px;
     display: flex;
     gap: 8px;
+    margin: 2px;
 }
-#contents .detail .place_choose .place_info >span{
-    font-size: 19px;
+#contents .detail .place_choose .place_info .place_name >span{
+    font-size: 17px;
+    margin-top: 1px;
 }
 #contents .detail .place_choose .place_info .place_type{
     height: 22px;
@@ -393,7 +395,7 @@ header{
 }
 #contents .detail .place_choose .place_ratings{
     display: flex;
-    margin-top: 2px;
+    margin-top: 0px;
 }
 #contents .detail .place_choose .img_rating{
     width: 18px;
@@ -420,7 +422,8 @@ header{
     display: inline-block;
     width: 243px;
     height: 18px;
-    margin-top: 6px;
+    margin-top: 2px;
+    margin-left: 2px;
 }
 #contents .detail .place_choose .btn_add_place{
     width: 54px;
@@ -429,13 +432,15 @@ header{
     justify-content: center;
     align-self: center;
     align-items: center;
+    cursor: pointer;
+    margin-right: 8px;
 }
 #contents .detail .place_choose .btn_add_place span{
     font-size: 15px;
     color: #fff;
 }
 #contents .detail .place_choose .place_separator{
-    width: 390px;
+    width: 350px;
     height: 1px;
     background-color: #EEEEEE;
 }
@@ -488,7 +493,7 @@ header{
 }
 #contents .detail .schedule_manage .schedule_place >span{
     font-family: 'Pretendard-Bold';
-    font-size: 20px;
+    font-size: 17px;
     display: inline-block;
     margin-top: 20px;
 }
@@ -893,22 +898,26 @@ header{
 #contents .holder .plan .selected_destination_list .selected_destination_name span{
     font-size: 16px;
 }
+
 /* plan content date */
 #contents .holder .plan .date{
+    width: 324px;
+    height: 43px;
+    border-radius: 10px;
+    background-color: #E1E1E1;
     display: flex;
-    gap: 10px;
+    justify-content: center;
     align-items: center;
 }
-#contents .holder .plan .date span{
-    font-size: 17px;
+#contents .holder .plan .date input{
+    width: 297px;
+    height: 21px;
+    border-width: 0;
+    outline: none;
+    background: none;
+    font-size: 14px;
 }
-#contents .holder .plan .date span:first-of-type{
-    display: block;
-    width: 6px;
-    height: 6px;
-    background-color: #006BDF;
-    margin-left: 6px;
-}
+
 /* plan content place */
 #contents .holder .plan .places{
     display: flex;

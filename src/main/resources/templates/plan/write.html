@@ -5,19 +5,56 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="/css/munseon.css">
-	<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.0/themes/base/jquery-ui.css">
-	<link rel="stylesheet" href="/css/datepicker.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="https://code.jquery.com/ui/1.14.0/jquery-ui.js"></script>
+	<link rel="stylesheet" href="/css/daterangepicker.css" />
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 	<script>
 		$(function () {
 			// header
 			// $("#wrap").children("header").load("../layout/plan_header.html");
 
-			// datepicker
-			$("#datepicker").datepicker({
-				changeMonth: true,
-				changeYear: true
+			$('#daterangepicker').daterangepicker({
+			    "locale": {
+			        "format": "YYYY년 MM월 DD일",
+			        "separator": "  ~  ",
+			        "applyLabel": "적용",
+			        "cancelLabel": "취소",
+			        "fromLabel": "From",
+			        "toLabel": "To",
+			        "customRangeLabel": "Custom",
+			        "weekLabel": "W",
+			        "daysOfWeek": [
+			            "일",
+			            "월",
+			            "화",
+			            "수",
+			            "목",
+			            "금",
+			            "토"
+			        ],
+			        "monthNames": [
+			            "1월",
+			            "2월",
+			            "3월",
+			            "4월",
+			            "5월",
+			            "6월",
+			            "7월",
+			            "8월",
+			            "9월",
+			            "10월",
+			            "11월",
+			            "12월"
+			        ],
+			        "firstDay": 1
+			    },
+			    "alwaysShowCalendars": true,
+			    "parentEl": ".box_date",
+			    "applyButtonClasses": "btn_apply_drp",
+			    "cancelClass": "btn_default_drp"
+			}, function(start, end, label) {
+			  console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
 			});
 		});
 	</script>
@@ -145,7 +182,7 @@
 					<div class="box date_choose">
 						<h3>날짜 선택</h3>
 						<div class="box_date">
-							<div id="datepicker"></div>
+							
 						</div>
 					</div>
 					<div class="box place_choose">
@@ -389,7 +426,7 @@
 										<p>함께 구체적인 여행 계획을 세워보세요</p>
 									</div>
 									<div class="content">
-										<span>그룹원</span>
+										<span>그룹원 🧳</span>
 										<div class="members" id="groupMemberList">
 											<th:block th:each="member:${groupMemberList}">
 												<span class="member_separator" th:if="${memberStat.index > 0}"></span>
@@ -437,7 +474,7 @@
 										<p>경로 설정을 위해 목적지를 선택해주세요</p>
 									</div>
 									<div class="content">
-										<span>목적지</span>
+										<span>목적지 🚩</span>
 										<div class="selected_destination_list">
 											<!-- 목적지 리스트 -->
 										<!--<div class="selected_destination">
@@ -467,13 +504,9 @@
 										<p>여행의 시작 일정과 종료 일정을 설정해주세요</p>
 									</div>
 									<div class="content">
-										<span>기간</span>
+										<span>기간 🗓️ (⬇️ 클릭)</span>
 										<div class="date">
-											<span></span>
-											<!-- 기간 표시 -->
-											<span>2024년 10월 18일</span>
-											<span>~</span>
-											<span>2024년 10월 20일</span>
+											<input type="type" name="daterangepicker" id="daterangepicker" placeholder="날짜를 선택해주세요"/>
 										</div>
 									</div>
 									<div>
@@ -494,7 +527,7 @@
 										<p>다음 단계에서 구체적인 계획을 세울 수 있어요</p>
 									</div>
 									<div class="content">
-										<span>장소</span>
+										<span>장소 🏞️</span>
 										<div class="places">
 											<!-- 장소 리스트 -->
 											<div class="place">
