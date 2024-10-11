@@ -1,0 +1,29 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.DestinationMapper">
+
+	<!-- 계획ID에 해당하는 모든 목적지 -->
+	<select id="getDestinationByPlanId">
+	    SELECT * 
+	    FROM `destination`
+		WHERE plan_id = #{planId};
+	</select>
+	
+	<!-- 계획ID에 해당하는 첫번째 목적지 (리스트용) -->
+    <select id="getFirstDestinationByPlanId">
+    	SELECT * 
+    	FROM `destination`
+		WHERE plan_id = #{planId}
+		ORDER BY destination_id ASC
+		LIMIT 1;
+    </select>
+    
+	<!-- 계획ID에 해당하는 목적지의 수 -1 (외 1) -->
+    <select id="getDestinationCountByPlanId">
+    	SELECT COUNT(*)-1 
+    	FROM `destination`
+    	WHERE plan_id = #{planId};
+    </select>
+    
+</mapper>

@@ -2,5 +2,19 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.GroupMapper">
-	
+
+	<!-- 모든 계획에 유저 수 -->
+	<select id="getGroupCount" resultType="int">
+		SELECT COUNT(*)
+		FROM `group`
+		GROUP BY plan_id;	
+	</select>
+    
+    <!-- 모든 계획의 그룹장 -->
+    <select id="getGroupLeader">
+    	SELECT user_id 
+		FROM `group`
+		WHERE `rule` = '그룹장';
+    </select>
+    
 </mapper>

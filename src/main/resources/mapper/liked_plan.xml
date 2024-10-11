@@ -2,5 +2,34 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.LikedPlanMapper">
+	<insert id="insertLikedPlan">
+		INSERT INTO `liked_plan` (plan_id, user_id)
+		VALUES (#{planId}, #{userId});
+	</insert>
+	
+	<delete id="deleteLikedPlan">
+		DELETE FROM `liked_plan`
+		WHERE plan_id = #{planId} AND user_id = #{userId};
+	</delete>
+	
+	<!-- 모든 계획에 좋아요 수 -->
+	<select id="getLikedPlanCount" resultType="int">
+		SELECT COUNT(lp.plan_id)
+		FROM plan p
+		LEFT JOIN liked_plan lp ON p.plan_id = lp.plan_id
+		GROUP BY p.plan_id;
+	</select>
+	
+	<!-- 로그인한 유저의 좋아요 리스트 -->
+	<select id="getLikedPlanByUserId" resultType="int">
+		SELECT COUNT(lp.user_id) AS user_like_count
+		FROM 
+		    plan p
+		LEFT JOIN 
+		    liked_plan lp ON p.plan_id = lp.plan_id AND lp.user_id = #{userId}
+		GROUP BY 
+		    p.plan_id;
+	</select>
+
 	
 </mapper>

@@ -1,16 +1,17 @@
 @import url("font.css");
 @import url("main.css");
+@import url("jieun.css");
 
 
 /* 삭제예정 */
-.container .inner{
+/* .container .inner{
     outline: 1px solid red;
     min-height: 400px;
 }
 .content{
     outline: 1px solid blue;
     min-height: 400px;
-}
+} */
 
 /* 공통항목 */
 *{ 
@@ -53,6 +54,9 @@ a{
     height: 80px;
     justify-content: space-between;
     align-items: center;
+}
+#header .logo{
+    width:200px;
 }
 #header .menu ul{
     display: flex;

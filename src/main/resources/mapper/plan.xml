@@ -2,5 +2,46 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.PlanMapper">
+	<!--<select id="getPlanList">
+        SELECT 
+        	p.plan_id, p.is_shared, 
+            d.destination_id, d.city_kor, d.city_eng, d.country_kor, d.country_eng, d.country_code, d.continent,
+            pl.place_id, pl.name, pl.addr, pl.latitude, pl.longitude, pl.start_time, pl.end_time, pl.type, pl.system_name, pl.origin_name,
+            c.cost_id, c.content, c.expected_cost, c.total_cost, c.payer
+        FROM plan p
+	        LEFT JOIN destination d ON p.plan_id = d.plan_id
+	        LEFT JOIN place pl ON d.destination_id = pl.destination_id
+	        LEFT JOIN cost c ON pl.place_id = c.place_id;
+    </select>-->
+    
+    <!-- 전체 계획 -->
+    <select id="getPlan">
+		SELECT * 
+		FROM `plan`;
+	</select>
 	
+	<!-- 공유된 전체 계획 수 -->
+	<select id="getSharedTotal">
+		SELECT COUNT(*) 
+		FROM `plan` 
+		WHERE `is_shared` = 1;
+	</select>
+	
+	<!-- 공유된 계획 한 페이지 씩 -->
+	<select id="getSharedList">
+		SELECT * 
+		FROM `plan`
+		WHERE `is_shared` = 1
+		LIMIT 0,2;
+		<!--LIMIT 0,2;-->
+	</select>
+        
+    <!-- 계획ID에 해당하는 여행 일 수 -->
+    <select id="getPlanDays">
+	    SELECT DATEDIFF(end_date, start_date)
+		FROM `plan`;
+    </select>
+    
+      
+    
 </mapper>

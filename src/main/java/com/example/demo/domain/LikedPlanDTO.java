@@ -1,5 +1,9 @@
 package com.example.demo.domain;
 
-public class LikedPlanDTO {
+import lombok.Data;
 
+@Data
+public class LikedPlanDTO {
+	private long planId;
+	private String userId;
 }
