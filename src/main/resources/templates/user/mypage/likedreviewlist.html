@@ -84,8 +84,8 @@
 							}
 							
 							const html = `
-							<div class="review_content" data-reviewId=${likedReview.reviewId} style="background-image: url('${backgroundImage}')";>
-								<a href="/review/detail/${likedReview.reviewId}" class="item_link">
+							<a href="/review/detail/${likedReview.reviewId}" class="item_link">
+								<div class="review_content" data-reviewId=${likedReview.reviewId} style="background-image: url('${backgroundImage}')";>
 									<div class="date_and_views">
 		                                <div class="date">${likedReview.createdDate}</div>
 		                                <div class="views_and_count">
@@ -94,15 +94,15 @@
 		                                </div>
 		                            </div>
 		                            <div class="like_box">
-		                                <img src="/images/like_icon.png" alt="하트" class="like_icon" onclick="removeReview(${likedReview.reviewId})">
+		                                <img src="/images/like_icon.png" alt="하트" class="like_icon" onclick="removeReview(event, ${likedReview.reviewId})">
 		                            </div>
 		                            <div class="title_text">${likedReview.title}</div>
 		                            <div class="author_name_nim">
 		                                <div class="author_name">${likedReview.nickname}</div>
 		                                <div class="nim">님</div>
 		                            </div>
-								</a>
-	                        </div>`;
+	                        	</div>
+							</a>`;
 							
 							$('#liked_review_list').append(html);
 						});
@@ -120,7 +120,12 @@
 	});
 	
 	//하트 클릭시 리스트에서 제거
-	function removeReview(reviewId){
+	function removeReview(event, reviewId){
+		
+		//클릭 이벤트가 상위 요소에 전달되지 않도록 방지
+		event.preventDefault();
+		event.stopPropagation();
+		
 		$.ajax({
 			url: `likedReviews/${reviewId}`,
 			method: "DELETE",

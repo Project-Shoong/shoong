@@ -7,6 +7,7 @@ import lombok.Data;
 @Data
 public class PlaceDTO {
 	 private long placeId;
+	 private String markerId;
 	 private String name;
 	 private String addr;
 	 private double latitude;

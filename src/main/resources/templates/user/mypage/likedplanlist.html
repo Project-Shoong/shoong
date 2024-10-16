@@ -99,12 +99,12 @@
 							const otherCityText = likedPlan.otherCitiesCnt > 0 ? `외 ${likedPlan.otherCitiesCnt}` : "";
 							
 							const html = `
-							<div class="schedule_content_item" data-planId="${likedPlan.planId}">
-								<a href="/plan/detail/${likedPlan.planId}" class="item_link">
+							<a href="/plan/detail/${likedPlan.planId}" class="item_link">
+								<div class="schedule_content_item" data-planId="${likedPlan.planId}">
 		                            <div class="item1">
 		                                <div class="country_name">${likedPlan.countryKor}</div>
 		                                <div class="like_box">
-		                                    <img src="/images/like_icon.png" alt="하트" class="like_icon" onclick="removeItem(${likedPlan.planId})">
+		                                    <img src="/images/like_icon.png" alt="하트" class="like_icon" onclick="removeItem(event, ${likedPlan.planId})">
 		                                </div>
 		                            </div>
 	
@@ -146,8 +146,8 @@
 		                                    <div class="gae">개</div>
 		                                </div>
 		                            </div>
-								</a>
-	                        </div>`;
+	                        	</div>
+							</a>`;
 							
 							//새로운 html 생성하여 추가하기
 							$('#schedule_list').append(html);
@@ -174,7 +174,11 @@
 	});
 	
 	//하트 클릭시 리스트에서 제거
-	function removeItem(planId){
+	function removeItem(event, planId){
+		//클릭 이벤트가 상위 요소에 전달되지 않도록 방지
+		event.preventDefault();
+		event.stopPropagation();
+		
 		$.ajax({
 			url: `likedPlans/${planId}`,
 			method: "DELETE",

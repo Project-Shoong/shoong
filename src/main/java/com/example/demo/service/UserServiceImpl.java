@@ -242,15 +242,19 @@ public class UserServiceImpl implements UserService{
 			List<Long> pc = placeMapper.getMyPlaceByDestIds(destIds, planIds);
 			
 
-
+			System.out.println(planIds);
 		    // 각 계획에 대해 해시맵에 데이터 담기
-		    for (int i = 0; i < planIds.size(); i++) {
+		    for (int i = 0; i < planIds.size()-1; i++) {
 		        Map<String, Object> planInfo = new HashMap<>();
 		        
 		        planInfo.put("userId",userId);
 		        
 		        // 목적지 정보
 		        DestinationDTO destination = first.get(i);
+		        if (first.isEmpty()) {
+				    return result;
+				}
+		        System.out.println("log: "+destination);
 		        planInfo.put("cityKor", destination.getCityKor());
 		        planInfo.put("countryKor", destination.getCountryKor());
 		        
