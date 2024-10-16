@@ -2,6 +2,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.UserMapper">
+<<<<<<< HEAD
 	<insert id="insertUser">
 		insert into user (user_id, password, nickname, email, phone_number)
 		values(#{userId}, #{password}, #{nickname}, #{email}, #{phoneNumber})
@@ -27,4 +28,12 @@
 		SELECT COUNT(*) FROM `user`
 	</select>
 	
+=======
+	<select id="getList">
+		select * from user where user_id like '%${keyword}%' order by user_id asc
+	</select>
+	<select id="getNicknameByUserId">
+		select nickname from user where user_id = #{userId}
+	</select>
+>>>>>>> 5d88252c551d0340812b9281fed8c26e820fba8b
 </mapper>
