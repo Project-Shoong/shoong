@@ -65,5 +65,4 @@ local.properties
 
 ### static resources ###
 shoong.sql
-src/main/resources/static/images/
 src/main/resources/templates/images/

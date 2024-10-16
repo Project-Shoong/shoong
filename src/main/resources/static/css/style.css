@@ -1,16 +1,18 @@
 @import url("font.css");
 @import url("main.css");
-
+@import url("owo.css");
+@import url("jieun.css");
+@import url("kuj.css");
 
 /* 삭제예정 */
-.container .inner{
+/* .container .inner{
     outline: 1px solid red;
     min-height: 400px;
 }
 .content{
     outline: 1px solid blue;
     min-height: 400px;
-}
+} */
 
 /* 공통항목 */
 *{ 
@@ -23,6 +25,7 @@
 body{
     font-family: 'Pretendard-Regular';
     color : #111;
+	min-width: 1440px;
 }
 a{
     color:#111;
@@ -30,6 +33,7 @@ a{
 .blue{
     color: #006BDF;
 }
+
 .inner{
     width:1440px; 
     margin:0 auto;
@@ -53,6 +57,9 @@ a{
     height: 80px;
     justify-content: space-between;
     align-items: center;
+}
+#header .logo{
+	width:200px;
 }
 #header .menu ul{
     display: flex;

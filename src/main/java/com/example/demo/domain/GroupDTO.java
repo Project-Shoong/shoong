@@ -1,5 +1,10 @@
 package com.example.demo.domain;
 
-public class GroupDTO {
+import lombok.Data;
 
+@Data
+public class GroupDTO {
+	private String rule;
+	private long planId;
+	private String userId;
 }

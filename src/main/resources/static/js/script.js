@@ -5,10 +5,10 @@ const logoimg = document.querySelector('#logoimg');
 const updateHeader = () => {
     if (window.scrollY > 0) {
         header.classList.add('active');
-        logoimg.innerHTML = '<img src="./images/top_logo_b.png" alt="">';
+        logoimg.innerHTML = '<img src="/images/top_logo_b.png" alt="">';
     } else {
         header.classList.remove('active');
-        logoimg.innerHTML = '<img src="./images/top_logo.png" alt="">';
+        logoimg.innerHTML = '<img src="/images/top_logo.png" alt="">';
     }
 };
 
