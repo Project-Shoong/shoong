@@ -22,8 +22,8 @@ public class GroupController {
 	GroupService service;
 	
 	@GetMapping("list")
-	public String list(long planId, Model model) {
-		List<GroupMemberDTO> list = service.getList(planId);
+	public String list(String planId, Model model) {
+		List<GroupMemberDTO> list = service.getList(Long.parseLong(planId));
 		model.addAttribute("groupMemberList", list);
 		return "/plan/write :: #groupMemberList";
 	}

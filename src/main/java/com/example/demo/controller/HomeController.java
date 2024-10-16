@@ -11,7 +11,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String index(HttpServletRequest req) {
 		HttpSession session = req.getSession();
-		session.setAttribute("loginUser", "test");
+		session.setAttribute("loginUser", "abc123");
 		return "index";
 	}
 }

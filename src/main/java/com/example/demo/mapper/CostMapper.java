@@ -1,5 +1,12 @@
 package com.example.demo.mapper;
 
-public interface CostMapper {
+import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
+import com.example.demo.domain.CostDTO;
+
+@Mapper
+public interface CostMapper {
+	int insertCostByPlaceId(List<CostDTO> costs);
 }

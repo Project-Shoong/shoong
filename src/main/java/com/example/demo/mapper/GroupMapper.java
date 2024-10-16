@@ -10,6 +10,6 @@ import com.example.demo.domain.GroupMemberDTO;
 
 @Mapper
 public interface GroupMapper {
-	int insertGroup(@Param("group") GroupDTO group);
+	int insertGroup(GroupDTO group);
 	List<GroupMemberDTO> getMemberListByPlanId(long planId);
 }

@@ -1,0 +1,18 @@
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.DestinationMapper">
+	<insert id="insertDestination" parameterType="java.util.Set">
+		insert into destination
+		(city_kor, country_kor, country_code, continent, plan_id)
+		values
+		<foreach collection="destinations" item="destination" separator=",">
+			(#{destination.cityKor}, #{destination.countryKor}, #{destination.countryCode}, #{destination.continent}, #{planId})
+		</foreach>
+	</insert>
+	<select id="getDestinationsByPlanId" resultType="java.util.Map">
+		select city_kor, destination_id
+		from destination
+		where plan_id = #{planId}
+	</select>
+</mapper>

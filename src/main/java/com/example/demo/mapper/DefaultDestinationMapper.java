@@ -8,6 +8,7 @@ import com.example.demo.domain.DefaultDestinationDTO;
 
 @Mapper
 public interface DefaultDestinationMapper {
+	DefaultDestinationDTO getDestinationById(int destinationId);
 	List<DefaultDestinationDTO> getDestinationsByKeyword(String keyword);
 	List<DefaultDestinationDTO> getDestinationsByKeyAndCont(String keyword, String continent);
 }

@@ -21,11 +21,16 @@ public class DefaultDestinationServiceImpl implements DefaultDestinationService 
 		
 		if(continent.equals("전체")) {
 			list = ddmapper.getDestinationsByKeyword(keyword);
-			System.out.println(list);
+//			System.out.println(list);
 		}
 		else {
 			list = ddmapper.getDestinationsByKeyAndCont(keyword, continent);
 		}
 		return list;
+	}
+	
+	@Override
+	public DefaultDestinationDTO getDestination(int destinationId) {
+		return ddmapper.getDestinationById(destinationId);
 	}
 }
