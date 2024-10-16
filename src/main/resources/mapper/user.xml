@@ -2,5 +2,29 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.UserMapper">
+	<insert id="insertUser">
+		insert into user (user_id, password, nickname, email, phone_number)
+		values(#{userId}, #{password}, #{nickname}, #{email}, #{phoneNumber})
+	</insert>
+	
+	<select id="getUserByUserId">
+		select * from user where user_id=#{userId}
+	</select>
+	
+	<update id="updateUser">
+		update user
+		set password=#{password}, nickname=#{nickname}, email=#{email}, phone_number=#{phoneNumber}
+		<if test="systemName != null">, system_name = #{systemName}</if>
+        <if test="originName != null">, origin_name = #{originName}</if>  
+		where user_id=#{userId}
+	</update>
+	
+	<delete id="deleteUser">
+		delete from user where user_id=#{userId}
+	</delete>
+	
+	<select id="getAllUserCnt">
+		SELECT COUNT(*) FROM `user`
+	</select>
 	
 </mapper>

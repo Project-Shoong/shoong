@@ -1,9 +1,9 @@
 <th:block th:fragment="header">
-<script defer src="../../static/js/script.js"></script>
+<script defer src="/js/script.js"></script>
 
 <div class="inner">
     <div class="logo">
-        <a href="#" id="logoimg"><img src="./images/top_logo.png" alt=""></a>
+        <a href="/" id="logoimg"><img src="/images/top_logo.png" alt=""></a>
     </div>
     <div class="menu">
         <ul>
@@ -14,8 +14,17 @@
     </div>
     <div class="login">
         <ul>
-            <li><a href="#">로그인</a></li>
-            <li><a href="#">회원가입</a></li>
+			<!-- 세션에 로그인 사용자 정보가 있는 경우 -->
+			<th:block th:if="${session.loginUser != null}">
+                <li><a th:href="@{/user/myaccount}">마이페이지</a></li>
+                <li><a th:href="@{/user/logout}">로그아웃</a></li>
+            </th:block>
+			
+			<!-- 세션에 로그인 사용자 정보가 없는 경우 -->
+			<th:block th:unless="${session.loginUser != null}">
+				<li><a th:href="@{/user/login}">로그인</a></li>
+	            <li><a th:href="@{/user/join}">회원가입</a></li>
+			</th:block>
         </ul>
     </div>
 </div>
