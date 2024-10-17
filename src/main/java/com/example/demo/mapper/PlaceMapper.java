@@ -8,5 +8,6 @@ import com.example.demo.domain.PlaceDTO;
 
 @Mapper
 public interface PlaceMapper {
-	List<PlaceDTO> getPlaceByPlanId(long planId);
+	List<PlaceDTO> getPlaceByPlanId(Long planId);
+	List<PlaceDTO> getPlacesByDestinationId(Long planId, Long destinationId);
 }

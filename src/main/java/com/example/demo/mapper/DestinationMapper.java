@@ -8,7 +8,6 @@ import com.example.demo.domain.DestinationDTO;
 
 @Mapper
 public interface DestinationMapper {
-	List<DestinationDTO> getDestinationByPlanId(long planId);
-	List<DestinationDTO> getFirstDestinationByPlanId(long planId);
-	int getDestinationCountByPlanId(long planId);
+	List<DestinationDTO> getDestinationByPlanId(Long planId);
+	DestinationDTO getDestinationById(Long destinationId);
 }

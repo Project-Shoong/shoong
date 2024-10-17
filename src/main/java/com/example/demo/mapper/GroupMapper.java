@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.demo.domain.GroupDTO;
+
 @Mapper
 public interface GroupMapper {
-	List<Integer> getGroupCount();
-	List<String> getGroupLeader();
+    List<GroupDTO> getGroupByPlanId(Long planId);
 }
-

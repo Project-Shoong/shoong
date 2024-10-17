@@ -2,23 +2,12 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import com.example.demo.domain.CriteriaJ;
+import com.example.demo.domain.PlanDetailsDTO;
 
-import com.example.demo.domain.DestinationDTO;
-import com.example.demo.domain.PlaceDTO;
-import com.example.demo.domain.PlanDTO;
-
-@Service
-public interface PlanService {
-	List<PlanDTO> getPlan();
-	List<Integer> getGroupCount();
-	List<String> getGroupLeader();
-	List<Integer> getPlanDays();
-	List<Integer> getLikedPlanCount();
-	List<List<DestinationDTO>> getPlansWithDestinations(); 
-	List<List<PlaceDTO>> getPlansWithPlace();
-	List<Integer> getLikedPlanByUserId(String userId);
-	
-	long getSharedTotal();
-	
+public interface PlanService {	
+	List<PlanDetailsDTO> getPlans(CriteriaJ criJ, String userId);
+	PlanDetailsDTO getPlan(long planId, String userId);
+	long getTotal(CriteriaJ criJ);
+//	PlanDetailsDTO getPlanDays(long planId, String userId);
 }

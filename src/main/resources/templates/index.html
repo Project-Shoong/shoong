@@ -3,14 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-        $(function() {
-          $("#header").load("./layout/header.html");
-          $("#footer").load("./layout/footer.html");
-        });
-    </script>
+    <link rel="stylesheet" href="./css/style.css">
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>
+	  AOS.init();
+	</script>
 
     <title>Shoong</title>
 </head>
@@ -18,7 +16,7 @@
 <div id="wrap">
     <!-- 헤더 불러오기 -->
     <div id="header">
-        <!-- <th:block th:replace="~{layout/header::header}"></th:block> -->
+        <th:block th:replace="~{layout/header::header}"></th:block>
     </div>
 
     <section>
@@ -364,7 +362,7 @@
 
     <!-- 푸터 불러오기 -->
     <div id="footer">
-        <!-- <th:block th:replace="~{layout/footer::footer}"></th:block> -->
+        <th:block th:replace="~{layout/footer::footer}"></th:block>
     </div>
     
 </div>

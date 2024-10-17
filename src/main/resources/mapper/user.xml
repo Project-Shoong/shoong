@@ -2,5 +2,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.UserMapper">
+	<!-- 유저 불러오기 -->
+	<select id="getUserByPlanId" resultType="com.example.demo.domain.UserDTO">
+		SELECT u.*
+		FROM `group` g
+		JOIN `user` u ON g.user_id = u.user_id
+		WHERE g.plan_id = #{planId};
+	</select>
 	
+	<!-- 그룹장 닉네임 -->
+	<select id="getLeaderNickByPlanId">
+		SELECT u.nickname
+		FROM `user` u
+		JOIN `group` g ON u.user_id = g.user_id
+		WHERE g.plan_id = #{planId}
+		AND g.rule = '그룹장';
+	</select>
+
 </mapper>
