@@ -16,72 +16,73 @@
     </div>
 
     <section>
-        <div id="firstwrap">
-            <div class="first inner">
-                <div class="bigtitle">
-                    <p class="bigtitle1">Start your Plan</p>
-                    <p class="bigtitle2">with. Shoong</p>
-                </div>
+		
+		<div id="firstwrap">
+		    <div class="first inner">
+		        <div class="bigtitle">
+		            <p class="bigtitle1">Start your Plan</p>
+		            <p class="bigtitle2">with. Shoong</p>
+		        </div>
 
-                <div class="smalltitle">
-                    <p class="smalltitle1">당신이 여행을 계획하고,</p>
-                    <p class="smalltitle2">여행 그 이상의 가치를 만들기를 바랍니다.</p>
-                </div>
+		        <div class="smalltitle">
+		            <p class="smalltitle1">당신이 여행을 계획하고,</p>
+		            <p class="smalltitle2">여행 그 이상의 가치를 만들기를 바랍니다.</p>
+		        </div>
 
-                <div class="bottom_menu">
-                    <div class="bottomtitle">
-                        <p class="bottomtitle1">어떤 나라의 여행을</p>
-                        <p class="bottomtitle1">계획하시고 계신가요?</p>
-                    </div>
-                    <a href="#">
-                        <div class="img1">
-                            <div class="img_box">
-                                <img src="./images/country1.png" alt="">
-                            </div>
-                            <p>동남아</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="img2">
-                            <div class="img_box">
-                                <img src="./images/country2.png" alt="">
-                            </div>
-                            <p>일본</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="img3">
-                            <div class="img_box">
-                                <img src="./images/country3.png" alt="">
-                            </div>
-                            <p>대양주</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="img4">
-                            <div class="img_box">
-                                <img src="./images/country4.png" alt="">
-                            </div>
-                            <p>유럽</p>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="img5">
-                            <div class="img_box">
-                                <img src="./images/country5.png" alt="">
-                            </div>
-                            <p>미주</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="main_arrow">
-                    <p><img src="./images/btn_prev.png" alt=""></p>
-                    <p><img src="./images/btn_next.png" alt=""></p>
-                </div>
-            </div>
-            </div>
+		        <div class="bottom_menu">
+		            <div class="bottomtitle">
+		                <p class="bottomtitle1">어떤 나라의 여행을</p>
+		                <p class="bottomtitle1">계획하시고 계신가요?</p>
+		            </div>
+		            <a href="#" data-index="0" class="country" id="country1">
+		                <div class="img1">
+		                    <div class="img_box">
+		                        <img src="./images/country1.png" alt="">
+		                    </div>
+		                    <p>동남아</p>
+		                </div>
+		            </a>
+		            <a href="#" data-index="1" class="country" id="country2">
+		                <div class="img2">
+		                    <div class="img_box">
+		                        <img src="./images/country2.png" alt="">
+		                    </div>
+		                    <p>일본</p>
+		                </div>
+		            </a>
+		            <a href="#" data-index="2" class="country" id="country3">
+		                <div class="img3">
+		                    <div class="img_box">
+		                        <img src="./images/country3.png" alt="">
+		                    </div>
+		                    <p>대양주</p>
+		                </div>
+		            </a>
+		            <a href="#" data-index="3" class="country" id="country4">
+		                <div class="img4">
+		                    <div class="img_box">
+		                        <img src="./images/country4.png" alt="">
+		                    </div>
+		                    <p>유럽</p>
+		                </div>
+		            </a>
+		            <a href="#" data-index="4" class="country" id="country5">
+		                <div class="img5">
+		                    <div class="img_box">
+		                        <img src="./images/country5.png" alt="">
+		                    </div>
+		                    <p>미주</p>
+		                </div>
+		            </a>
+		        </div>
+		        <div class="main_arrow">
+		            <p id="prev"><img src="./images/btn_prev.png" alt=""></p>
+		            <p id="next"><img src="./images/btn_next.png" alt=""></p>
+		        </div>
+		    </div>
+		</div>
+
             
-        </div>
     </section>
 
     <section>
@@ -196,14 +197,7 @@
 				
 				<!--여기서부터-->
                 <div class="fourth2_img1" th:each="plan : ${rt}">
-					<img th:if="${plan.reviewImage == 'default_place.png'}"
-					     th:src="@{/images/default_place.png}" 
-					     alt="메인기본이미지">
-
-					<img th:if="${plan.reviewImage != 'default_place.png'}"
-					     th:src="@{|${plan.reviewImage}|}" 
-					     alt="메인기본이미지">
-
+                    <img src="./images/sample_img1.png" alt="">
                     <a th:href="@{/Review/{reviewId}(reviewId=${plan.reviewId})}">
                         <div class="fourth2_blackbox">
                         <div class="fourth2_text1">
@@ -245,6 +239,58 @@
     </div>
     
 </div>
+
+<script>
+        const images = [
+            '../images/first.jpg',
+            '../images/second2.jpg',
+            '../images/third3.jpg',
+            '../images/fourth44.jpg',
+            '../images/fifth5.jpg',
+            '../images/sixth6.jpg',
+        ];
+
+        let currentIndex = 0;
+
+        function updateBackground() {
+            document.getElementById('firstwrap').style.backgroundImage = `url(${images[currentIndex]})`;
+        }
+
+        function updateSelectedCountry(selectedIndex) {
+            const countries = document.querySelectorAll('.country');
+            countries.forEach((country, index) => {
+                const imgBox = country.querySelector('.img_box');
+                imgBox.classList.toggle('selected', index === selectedIndex);
+            });
+        }
+
+        document.getElementById('prev').addEventListener('click', () => {
+            currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+            updateBackground();
+        });
+
+        document.getElementById('next').addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateBackground();
+        });
+
+        document.querySelectorAll('.country').forEach((country, index) => {
+            country.addEventListener('click', (e) => {
+                e.preventDefault();
+                currentIndex = index + 1; // country click moves to the next image
+                updateBackground();
+                updateSelectedCountry(index);
+            });
+        });
+
+        // 초기 배경 이미지 설정
+        updateBackground();
+		
+		setInterval(() => {
+		    currentIndex = (currentIndex + 1) % images.length;
+		    updateBackground();
+		}, 4000);
+    </script>
 </body>
 </html>
 
