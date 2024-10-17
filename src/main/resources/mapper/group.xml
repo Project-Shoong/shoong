@@ -2,7 +2,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.GroupMapper">
-<<<<<<< HEAD
+
 
 	<select id="getMyGroup">
 		select * from `group` where user_id = #{userId} order by `plan_id` asc;
@@ -22,12 +22,12 @@
         WHERE `plan_id` = #{planId} AND `user_id` = #{userId}
     </delete>
     
-=======
+
 	<insert id="insertGroup">
 		insert into `group` values(#{rule}, #{planId}, #{userId})
 	</insert>
 	<select id="getMemberListByPlanId">
 		select `group`.rule, `group`.plan_id, `group`.user_id, nickname from `group`, `user` where `group`.user_id = `user`.user_id and plan_id = #{planId};
 	</select>
->>>>>>> 5d88252c551d0340812b9281fed8c26e820fba8b
+
 </mapper>

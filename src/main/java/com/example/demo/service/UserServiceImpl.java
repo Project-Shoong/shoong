@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-<<<<<<< HEAD
+
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -30,20 +30,20 @@ import com.example.demo.mapper.GroupMapper;
 import com.example.demo.mapper.PlaceMapper;
 import com.example.demo.mapper.PlanMapper;
 import com.example.demo.mapper.ReviewMapper;
-=======
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.UserDTO;
->>>>>>> 5d88252c551d0340812b9281fed8c26e820fba8b
 import com.example.demo.mapper.UserMapper;
 
 @Service
 public class UserServiceImpl implements UserService{
-<<<<<<< HEAD
-	
+
+	@Autowired
+	UserMapper umapper;
 	@Autowired
 	private UserMapper userMapper;
 	@Autowired
@@ -323,15 +323,9 @@ public class UserServiceImpl implements UserService{
 		};
 	
 	
-=======
-
-	@Autowired
-	UserMapper umapper;
-	
-	@Override
-	public List<UserDTO> getUsersByKeyword(String keyword) {
-		List<UserDTO> list = umapper.getList(keyword);
-		return list;
-	}
->>>>>>> 5d88252c551d0340812b9281fed8c26e820fba8b
+		@Override
+		public List<UserDTO> getUsersByKeyword(String keyword) {
+			List<UserDTO> list = umapper.getList(keyword);
+			return list;
+		}
 }

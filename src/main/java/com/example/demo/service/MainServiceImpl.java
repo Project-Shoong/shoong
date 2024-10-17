@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
@@ -9,14 +10,17 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.domain.DestinationDTO;
 import com.example.demo.domain.GroupDTO;
+import com.example.demo.domain.PhotoDTO;
 import com.example.demo.domain.PlanDTO;
 import com.example.demo.domain.ReviewDTO;
 import com.example.demo.mapper.DestinationMapper;
 import com.example.demo.mapper.GroupMapper;
+import com.example.demo.mapper.LikedMapper;
 import com.example.demo.mapper.PlaceMapper;
 import com.example.demo.mapper.PlanMapper;
 import com.example.demo.mapper.ReviewMapper;
@@ -35,7 +39,14 @@ public class MainServiceImpl implements MainService{
 	private ReviewMapper reviewMapper;
 	@Autowired
 	private UserMapper userMapper;
+	@Autowired
+	private LikedMapper likedMapper;
+	
+	@Value("${file.dir}")
+	private String saveFolder;
 
+	private static final String DEFAULT_MAIN_IMAGE_PATH = "/images/default_place.png";
+	
 	@Override
 	public List<Map<String, Object>> getMain() {
 		//반환할 값
@@ -107,10 +118,26 @@ public class MainServiceImpl implements MainService{
 
 			        planInfo.put("nights", nights);
 			        planInfo.put("days", days);
+			        
+			        //reviewid 기준 사진 꺼내오기
+			        String fullPath = DEFAULT_MAIN_IMAGE_PATH;
+			        
+			        List<PhotoDTO> photos = likedMapper.getPhotosByReviewId(revi.getReviewId());
+			        
+			        if(photos != null && !photos.isEmpty()) {
+			        	PhotoDTO firstPhoto = photos.get(0);
+			        	String systemName = firstPhoto.getSystemName();
+
+			        	File file = new File(saveFolder, systemName);
+			        	if(file.exists()) {
+			        		String filename = file.getName();
+			        		fullPath = "/file/" + filename;
+			        	}
+			        }
+			        planInfo.put("reviewImage", fullPath);
 
 			        result.add(planInfo);
 			    }
-			    
 			    return result;
 	}
 

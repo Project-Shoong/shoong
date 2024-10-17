@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
-<<<<<<< HEAD
-public interface PlanService {
-=======
+
+
+
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +14,5 @@ public interface PlanService {
 				Map<String, Object> itineraries,
 				Map<String, Object> costs,
 				String userId);
->>>>>>> 5d88252c551d0340812b9281fed8c26e820fba8b
 	
 }

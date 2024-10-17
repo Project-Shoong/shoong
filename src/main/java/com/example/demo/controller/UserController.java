@@ -1,18 +1,15 @@
 package com.example.demo.controller;
 
-<<<<<<< HEAD
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-=======
 import java.util.List;
->>>>>>> 5d88252c551d0340812b9281fed8c26e820fba8b
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-<<<<<<< HEAD
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,20 +34,19 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-=======
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.domain.UserDTO;
 import com.example.demo.service.UserService;
 
->>>>>>> 5d88252c551d0340812b9281fed8c26e820fba8b
+
 @Controller
 @RequestMapping("/user/*")
 public class UserController {
 	
 	@Autowired
-<<<<<<< HEAD
 	private UserService service;
 	@Autowired
 	private LikedService likedService;
@@ -396,9 +392,11 @@ public class UserController {
 	    return "redirect:/user/myComment";
 	}
 	
-	
-=======
-	UserService service;
+//	마이페이지 - 내 계정 - 포인트 관리
+	@GetMapping("mypoint")
+	public String mypage(Model model) {
+		return "user/mypoint";
+	}
 	
 	@GetMapping("search")
 	public String search(String keyword, Model model) {
@@ -407,5 +405,4 @@ public class UserController {
 		model.addAttribute("userList", list);
 		return "/plan/write :: #userList";
 	}
->>>>>>> 5d88252c551d0340812b9281fed8c26e820fba8b
 }

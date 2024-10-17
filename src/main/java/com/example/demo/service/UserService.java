@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
-<<<<<<< HEAD
+
 import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
@@ -27,12 +27,7 @@ public interface UserService {
 	void deleteMyPlan(long planId);
 	void exitMyPlan(String userId, long planId);
 	
-=======
 
-import com.example.demo.domain.UserDTO;
-
-public interface UserService {
 	List<UserDTO> getUsersByKeyword(String keyword);
->>>>>>> 5d88252c551d0340812b9281fed8c26e820fba8b
 }
  

@@ -633,6 +633,41 @@ input::placeholder{
 #my_schedule .schedule_container .review_content .author_name_nim .author_name{} 
 #my_schedule .schedule_container .review_content .author_name_nim .nim{} 
 
+/* 마이페이지 - 내 계정 - 포인트 관리 */
+#my_point .point_item{}
+#my_point .point_item .point_table{
+	width: 100%;
+	border-collapse: separate;
+	border: 1px solid #ddd;
+	border-collapse: collapse;
+	border-radius: 10px;
+	border-radius: 10px;
+  	border-style: hidden;
+  	box-shadow: 0 0 0 1px #ddd;
+}
+#my_point .point_item .point_table th, td{ 
+	border: 1px solid #ddd;
+	padding: 10px;
+	text-align: center;
+	font-size: 14px;
+}
+#my_point .point_item .point_table tr:first-child th:first-child {
+	border-top-left-radius: 10px;
+}
+#my_point .point_item .point_table tr:first-child th:last-child {
+	border-top-right-radius: 10px;
+}
+#my_point .point_item .point_table tr:last-child td:first-child {
+	border-bottom-left-radius: 10px;
+}
+#my_point .point_item .point_table tr:last-child td:last-child {
+	border-bottom-right-radius: 10px;
+}
+#my_point .point_item .point_table .point_positive{
+	color: #006BDF;
+}
+#my_point .point_item .point_table .point_negative{
+}
 
 /* 라인잡기 */
 div,footer{

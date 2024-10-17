@@ -2,7 +2,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.DestinationMapper">
-<<<<<<< HEAD
+
 	
 	<select id="getMyDestinationByPlanIds"  resultType="DestinationDTO">
 		SELECT d.* FROM `destination` d
@@ -31,7 +31,7 @@
 		order by start_time limit 1;
 	</select>
 	
-=======
+
 	<insert id="insertDestination" parameterType="java.util.Set">
 		insert into destination
 		(city_kor, country_kor, country_code, continent, plan_id)
@@ -45,5 +45,4 @@
 		from destination
 		where plan_id = #{planId}
 	</select>
->>>>>>> 5d88252c551d0340812b9281fed8c26e820fba8b
 </mapper>

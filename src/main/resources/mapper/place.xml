@@ -2,7 +2,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.PlaceMapper">
-<<<<<<< HEAD
+
 	<select id="getMyPlaceByDestIds"  resultType="Long">
 		SELECT COUNT(*) FROM `place` p
     	JOIN `destination` d ON p.destination_id = d.destination_id
@@ -16,7 +16,7 @@
     </foreach>
     GROUP BY d.plan_id
 	</select>
-=======
+
 	<insert id="insertPlace" parameterType="java.util.Set">
 		insert into place
 		(marker_id, name, addr, latitude, longitude, start_time, end_time, type, system_name, destination_id)
@@ -31,5 +31,5 @@
 		values (#{markerId}, #{name}, #{addr}, #{latitude}, #{longitude},
 			#{startTime}, #{endTime}, #{type}, #{systemName}, #{destinationId})
 	</insert>
->>>>>>> 5d88252c551d0340812b9281fed8c26e820fba8b
+
 </mapper>
