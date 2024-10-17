@@ -2,27 +2,5 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.demo.mapper.PlanMapper">
-
-
-	<select id="getMyPlanByPlanIds"  resultType="PlanDTO">
-		SELECT * FROM `plan` WHERE plan_id IN 
-	<foreach item="planId" collection="planIds" open="(" separator="," close=")">
-		#{planId}
-	</foreach>
-	</select>
 	
-	<delete id="deleteMyPlan">
-        DELETE FROM `plan`
-        WHERE `plan_id` = #{planId}
-    </delete>
-    
-    <select id="getAllPlanCnt">
-		SELECT COUNT(*) FROM `plan`
-	</select>
-	
-
-	<insert id="insertPlan" useGeneratedKeys="true" keyProperty="planId" parameterType="PlanDTO">
-		insert into plan (start_date, end_date) values(#{startDate}, #{endDate})
-	</insert>
-
 </mapper>
