@@ -18,6 +18,7 @@ $(function () {
 
             // 시작 시간이 더 빠른 경우
             if(lastItineraryEvent!==null) {
+                const iId = $(lastItineraryEvent).children('input').val();
                 if(compareTime(startTime, endTime)==1) {
                     $('#endTime').parent().css({
                         "border-color":"#f00",
@@ -32,11 +33,17 @@ $(function () {
                         $('#endTime').css("color","#161616");
                         $('#endTime').val(startTime);
                         $(lastItineraryEvent).find('.itinerary_end_time').html(parseTimeToText(startTime));
-                        const iId = $(lastItineraryEvent).children('input').val();
+                        // const iId = $(lastItineraryEvent).children('input').val();
                         console.log("확인"+iId)
                         itineraries.get(Number(iId)).endTime = parseTimeToColonTime(startTime);
                     },500)
                 }
+                // 시간 정렬
+                const date = $(lastItineraryEvent).closest('.schedule').children('input').val();
+                $(lastItineraryEvent).closest('.itineraries').html(bindItinerariesByDate(date));
+                console.log($(lastItineraryEvent).eq(0));
+                // $(lastItineraryEvent).closest('.itineraries').get(0).html('');
+                // $(lastItineraryEvent).closest('.itineraries').get(0).append(bindItinerariesByDate(date));
             }
         }
     });
@@ -77,6 +84,11 @@ $(function () {
                         itineraries.get(Number(iId)).endTime = parseTimeToColonTime(startTime);
                     },500)
                 }
+                // 시간 정렬
+                const date = $(lastItineraryEvent).closest('.schedule').children('input').val();
+                $(lastItineraryEvent).closest('.itineraries').html(bindItinerariesByDate(date));
+                // $(lastItineraryEvent).closest('.itineraries').get(0).html('');
+                // $(lastItineraryEvent).closest('.itineraries').get(0).append(bindItinerariesByDate(date));
             }
         }
     });

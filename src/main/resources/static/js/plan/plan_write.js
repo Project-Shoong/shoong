@@ -478,6 +478,37 @@ $(function() {
         const endTime = parseTimeValueToTime(itineraries.get(Number(iId)).endTime);
         $('.time_choose').find('input:eq(0)').val(startTime);
         $('.time_choose').find('input:eq(1)').val(endTime);
+        // 일정 비용 불러오기
+        let str = '';
+        $('.cost_list').html('');
+        for(const [key, value] of costs) {
+            const content = (value.content === "")? "항목명" : value.content;
+            const payer = (value.payer === "")? "( 이름 )" : value.payer;
+            const amount = (value.amount === 0)? "예상 금액" : value.amount.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원";
+            const color = (value.payer!=="")? "style='color:#828282'":"style='color:#E1E1E1'";
+            if(value.itineraryId === iId) {
+                str += `<div class="cost">
+                            <input type="hidden" value="${key}">
+                            <span class="cost_separator"></span>
+                            <div class="cost_name">
+                                <span>${content}</span>
+                                <input type="text">
+                            </div>
+                            <div class="cost_payer" ${color}>
+                                <span>${payer}</span>
+                                <input type="text">
+                            </div>
+                            <div class="cost_amount">
+                                <span>${amount}</span>
+                                <input type="text">
+                            </div>
+                            <div class="cost_remove">
+                                <img src="/images/remove.png" alt="">
+                            </div>
+                        </div>`;
+            }
+        }
+        $('.cost_list').append(str);
     })
     // $(document).click(function(e) {
     //     if(!$(e.target).closest('section:first-of-type, .itinerary, .schedule_manage, .ui-timepicker-container').length) {
@@ -507,6 +538,8 @@ $(function() {
         lastItineraryEvent = $(e.currentTarget).siblings('.itineraries').children().last().children('.itinerary').get(0);
         const iId = $(lastItineraryEvent).children('input').val();
         console.log("선택 일정 Key : " + iId);
+        // 비용 목록 초기화
+        $('.cost_list').html('');
 
         // $('.schedule_place').children('.place_list').html('');
         
@@ -557,85 +590,128 @@ $(function() {
         removeCost(e);
     })
     // 항목명 변경
-    $(document).on("click", ".cost_name, .cost_payer, .cost_amount", function(e) {
-        $(e.currentTarget).children('input').css('visibility', 'visible');
-        $(e.currentTarget).children('input').focus();
-        $(e.currentTarget).children('span').css('visibility', 'hidden');
+    $(document).on("click", ".cost_name span, .cost_payer span, .cost_amount span", function(e) {
+        // $(e.currentTarget).children('input').css('visibility', 'visible');
+        // $(e.currentTarget).children('input').focus();
+        // $(e.currentTarget).children('span').css('visibility', 'hidden');
+        $(e.currentTarget).siblings('input').css('visibility', 'visible');
+        $(e.currentTarget).siblings('input').focus();
+        $(e.currentTarget).css('visibility', 'hidden');
     })
-    $(document).on("blur", ".cost_name", function(e) {
-        $(e.currentTarget).children('input').css('visibility', 'hidden');
-        $(e.currentTarget).children('span').css('visibility', 'visible');
-        const value = $(e.currentTarget).children('input').val();
-        $(e.currentTarget).children('span').html(value);
-        addCostContent(e);
-    })
-    $(document).on("keyup", ".cost_name", function(e) {
-        if(e.keyCode===13) {
-            $(e.currentTarget).children('input').css('visibility', 'hidden');
-            $(e.currentTarget).children('span').css('visibility', 'visible');
-            const value = $(e.currentTarget).children('input').val();
-            $(e.currentTarget).children('span').html(value);
-            addCostContent(e);
-        }
-    })
-    $(document).on("blur", ".cost_payer", function(e) {
-        $(e.currentTarget).children('input').css('visibility', 'hidden');
-        $(e.currentTarget).children('span').css('visibility', 'visible');
-        const value = $(e.currentTarget).children('input').val();
-        if(value.length > 0) {
-            $(e.currentTarget).children('span').css('color', '#828282');
-            $(e.currentTarget).children('span').html(value);
+    $(document).on("blur", ".cost_name input", function(e) {
+        $(e.currentTarget).css('visibility', 'hidden');
+        $(e.currentTarget).siblings('span').css('visibility', 'visible');
+        let value = $(e.currentTarget).val();
+        if(value!=="") {
+            $(e.currentTarget).siblings('span').html(value);
         }
         else {
-            $(e.currentTarget).children('span').css('color', '#E1E1E1');
-            $(e.currentTarget).children('span').html("( 이름 )");
+            $(e.currentTarget).siblings('span').html("항목명");
+            value = ""
         }
-        addCostPayer(e);
+
+        const costId = $(e.currentTarget).parent().siblings('input').val();
+        costs.get(Number(costId)).content = value;
+        console.log(JSON.stringify(costs.get(Number(costId))));
     })
-    $(document).on("keyup", ".cost_payer", function(e) {
+    $(document).on("keyup", ".cost_name input", function(e) {
         if(e.keyCode===13) {
-            $(e.currentTarget).children('input').css('visibility', 'hidden');
-            $(e.currentTarget).children('span').css('visibility', 'visible');
-            const value = $(e.currentTarget).children('input').val();
-            if(value.length > 0) {
-                $(e.currentTarget).children('span').css('color', '#828282');
-                $(e.currentTarget).children('span').html(value);
+            $(e.currentTarget).css('visibility', 'hidden');
+            $(e.currentTarget).siblings('span').css('visibility', 'visible');
+            let value = $(e.currentTarget).val();
+            if(value!=="") {
+                $(e.currentTarget).siblings('span').html(value);
             }
             else {
-                $(e.currentTarget).children('span').css('color', '#E1E1E1');
-                $(e.currentTarget).children('span').html("( 이름 )");
+                $(e.currentTarget).siblings('span').html("항목명");
+                value = ""
             }
-            addCostPayer(e);
+
+            const costId = $(e.currentTarget).parent().siblings('input').val();
+            costs.get(Number(costId)).content = value;
+            console.log(JSON.stringify(costs.get(Number(costId))));
+        }
+    })
+    $(document).on("blur", ".cost_payer input", function(e) {
+        $(e.currentTarget).css('visibility', 'hidden');
+        $(e.currentTarget).siblings('span').css('visibility', 'visible');
+        let value = $(e.currentTarget).val();
+        if(value!=="") {
+            $(e.currentTarget).siblings('span').css('color', '#828282');
+            $(e.currentTarget).siblings('span').html(value);
+        }
+        else {
+            $(e.currentTarget).siblings('span').css('color', '#E1E1E1');
+            $(e.currentTarget).siblings('span').html("( 이름 )");
+            value = ""
+        }
+
+        const costId = $(e.currentTarget).parent().siblings('input').val();
+        // costs.get(Number(costId)).set("payer", value);
+        costs.get(Number(costId)).payer = value;
+        console.log(JSON.stringify(costs.get(Number(costId))));
+    })
+    $(document).on("keyup", ".cost_payer input", function(e) {
+        if(e.keyCode===13) {
+            $(e.currentTarget).css('visibility', 'hidden');
+            $(e.currentTarget).siblings('span').css('visibility', 'visible');
+            let value = $(e.currentTarget).val();
+            if(value!=="") {
+                $(e.currentTarget).siblings('span').css('color', '#828282');
+                $(e.currentTarget).siblings('span').html(value);
+            }
+            else {
+                $(e.currentTarget).siblings('span').css('color', '#E1E1E1');
+                $(e.currentTarget).siblings('span').html("( 이름 )");
+                value = ""
+            }
+
+            const costId = $(e.currentTarget).parent().siblings('input').val();
+            // costs.get(Number(costId)).set("payer", value);
+            costs.get(Number(costId)).payer = value;
+            console.log(JSON.stringify(costs.get(Number(costId))));
         }   
     })
-    $(document).on("blur", ".cost_amount", function(e) {
-        $(e.currentTarget).children('input').css('visibility', 'hidden');
-        $(e.currentTarget).children('span').css('visibility', 'visible');
-        const value = $(e.currentTarget).children('input').val();
-        if(value.length > 0) {
-            $(e.currentTarget).children('span').css('color', '#828282');
-            $(e.currentTarget).children('span').html(value+"원");
+    $(document).on("blur", ".cost_amount input", function(e) {
+        $(e.currentTarget).css('visibility', 'hidden');
+        $(e.currentTarget).siblings('span').css('visibility', 'visible');
+        let value = $(e.currentTarget).val();
+        var regex = /^[0-9]*$/
+        if(value!=="" && regex.test(value)) {
+            $(e.currentTarget).siblings('span').css('color', '#828282');
+            $(e.currentTarget).siblings('span').html(value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원");
         }
         else {
-            $(e.currentTarget).children('span').css('color', '#828282');
-            $(e.currentTarget).children('span').html("예상 금액");
+            $(e.currentTarget).siblings('span').css('color', '#828282');
+            $(e.currentTarget).siblings('span').html("예상 금액");
+            $(e.currentTarget).val('');
+            value = 0;
         }
-        addCostAmount(e);
+        const costId = $(e.currentTarget).parent().siblings('input').val();
+        // costs.get(Number(costId)).set("amount", Number(value));
+        costs.get(Number(costId)).amount = value;
+        console.log(JSON.stringify(costs.get(Number(costId))));
     })
-    $(document).on("keyup", ".cost_amount", function(e) {
+    $(document).on("keyup", ".cost_amount input", function(e) {
         if(e.keyCode===13) {
-            $(e.currentTarget).children('input').css('visibility', 'hidden');
-            $(e.currentTarget).children('span').css('visibility', 'visible');
-            const value = $(e.currentTarget).children('input').val();
-            if(value.length > 0) {
-                $(e.currentTarget).children('span').css('color', '#828282');
-                $(e.currentTarget).children('span').html(value+"원");
+            $(e.currentTarget).css('visibility', 'hidden');
+            $(e.currentTarget).siblings('span').css('visibility', 'visible');
+            let value = $(e.currentTarget).val();
+            var regex = /^[0-9]*$/
+            if(value!=="" && regex.test(value)) {
+                $(e.currentTarget).siblings('span').css('color', '#828282');
+                $(e.currentTarget).siblings('span').html(value.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")+"원");
             }
             else {
-                $(e.currentTarget).children('span').css('color', '#828282');
-                $(e.currentTarget).children('span').html("예상 금액");
+                $(e.currentTarget).siblings('span').css('color', '#828282');
+                $(e.currentTarget).siblings('span').html("예상 금액");
+                $(e.currentTarget).val('');
+                value = 0;
             }
-            addCostAmount(e);
+            const costId = $(e.currentTarget).parent().siblings('input').val();
+            // costs.get(Number(costId)).set("amount", Number(value));
+            costs.get(Number(costId)).amount = value;
+            console.log(JSON.stringify(costs.get(Number(costId))));
         }   
     })
 })
@@ -702,7 +778,7 @@ function bindItinerariesByDate(date) {
         return 0;
     });
     itineraries = new Map(arrItineraries);
-
+    console.log("일정맵 : "+JSON.stringify(Object.fromEntries(itineraries)));
     for(const [itinerary_key, itinerary_value] of itineraries) {
         if(date === itinerary_value.date) {
             const pId = itinerary_value.placeId;
@@ -928,57 +1004,42 @@ function addCost(e) {
                 <span class="cost_separator"></span>
                 <div class="cost_name">
                     <span>항목명</span>
-                        <input type="text">
-                    </div>
-                    <div class="cost_payer">
-                        <span>( 이름 )</span>
-                        <input type="text">
-                    </div>
-                    <div class="cost_amount">
-                        <span>예상 금액</span>
-                        <input type="text">
-                    </div>
+                    <input type="text">
+                </div>
+                <div class="cost_payer">
+                    <span>( 이름 )</span>
+                    <input type="text">
+                </div>
+                <div class="cost_amount">
+                    <span>예상 금액</span>
+                    <input type="text">
+                </div>
                 <div class="cost_remove">
                     <img src="/images/remove.png" alt="">
                 </div>
             </div>`;
     $(e.currentTarget).prev().append(str);
 
-    // costs.set(costKey, new Map());
+    // 비용 객체 초기화
     costs.set(costKey, {});
-
+    const cost = costs.get(Number(costKey));
     const itineraryId = $(lastItineraryEvent).children('input').val();
+    cost.itineraryId = itineraryId;
+    cost.costId = costKey;
+    cost.content = "";
+    cost.payer = "";
+    cost.amount = 0;
     
-    // costs.get(Number(costKey)).set("itineraryId", itineraryId);
-    costs.get(Number(costKey)).itineraryId = itineraryId;
     costKey--;
-    console.log(costs);
+    console.log("추가 : " + JSON.stringify(cost));
 }
 // 비용 삭제
 function removeCost(e) {
     const costId = $(e.currentTarget).siblings('input').val();
     costs.delete(Number(costId));
-
+    console.log("제거 : " + Number(costId));
+    console.log("제거후 map : " + JSON.stringify(Object.fromEntries(costs)));
     $(e.currentTarget).parent().remove();
-}
-function addCostContent(e) {
-    const costId = $(e.currentTarget).siblings('input').val();
-    const value = $(e.currentTarget).children('input').val();
-    console.log(costs.get(Number(costId)));
-    // costs.get(Number(costId)).set("content", value);
-    costs.get(Number(costId)).content = value;
-}
-function addCostPayer(e) {
-    const costId = $(e.currentTarget).siblings('input').val();
-    const value = $(e.currentTarget).children('input').val();
-    // costs.get(Number(costId)).set("payer", value);
-    costs.get(Number(costId)).payer = value;
-}
-function addCostAmount(e) {
-    const costId = $(e.currentTarget).siblings('input').val();
-    const value = $(e.currentTarget).children('input').val();
-    // costs.get(Number(costId)).set("amount", Number(value));
-    costs.get(Number(costId)).amount = value;
 }
 
 
