@@ -38,12 +38,6 @@ $(function () {
                         itineraries.get(Number(iId)).endTime = parseTimeToColonTime(startTime);
                     },500)
                 }
-                // 시간 정렬
-                const date = $(lastItineraryEvent).closest('.schedule').children('input').val();
-                $(lastItineraryEvent).closest('.itineraries').html(bindItinerariesByDate(date));
-                console.log($(lastItineraryEvent).eq(0));
-                // $(lastItineraryEvent).closest('.itineraries').get(0).html('');
-                // $(lastItineraryEvent).closest('.itineraries').get(0).append(bindItinerariesByDate(date));
             }
         }
     });
@@ -84,11 +78,6 @@ $(function () {
                         itineraries.get(Number(iId)).endTime = parseTimeToColonTime(startTime);
                     },500)
                 }
-                // 시간 정렬
-                const date = $(lastItineraryEvent).closest('.schedule').children('input').val();
-                $(lastItineraryEvent).closest('.itineraries').html(bindItinerariesByDate(date));
-                // $(lastItineraryEvent).closest('.itineraries').get(0).html('');
-                // $(lastItineraryEvent).closest('.itineraries').get(0).append(bindItinerariesByDate(date));
             }
         }
     });

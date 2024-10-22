@@ -149,6 +149,10 @@ $(function() {
         changeCursorStyle(e);
     })
     btn_schedule.click(function() {
+        if(selectedPlaces.size == 0) {
+            console.log("추가된 장소가 없어요.")
+            return;
+        }
         index_tab.css('visibility', 'visible');
         members_tab.css('top','calc(100vh - 153px)');
         destinations_tab.css('top','calc(100vh - 153px)');
@@ -442,6 +446,7 @@ $(function() {
     // 일정 - click
     // let lastItineraryEvent = null;       =>      timepicker 쪽으로 이동
     $(document).on("click", ".itinerary", function(e){
+        console.log("현재 이벤트 : " + $(lastItineraryEvent));
         // let iId;
         // if(lastItineraryEvent!=null || lastItineraryEvent!=undefined) {
         //     iId = $(lastItineraryEvent).children('input').val();
@@ -464,10 +469,31 @@ $(function() {
 
         // 일정 관리 화면 띄우기
         $('.schedule_manage').css('visibility', 'visible');
+        // 이전 선택 일정 테두리색 변화
+        $(lastItineraryEvent).parent().css("border", "none");
+
+        
+        
+        // 클릭시 재정렬
+        // 이전 일정의 id 저장
+        // let iId = $(lastItineraryEvent).children('input').val();
+        let iId = $(e.currentTarget).children('input').val();
+        // 시간 정렬
+        const date = $(lastItineraryEvent).closest('.schedule').children('input').val();
+        $(lastItineraryEvent).closest('.itineraries').html(bindItinerariesByDate(date));
+        // 클릭한 id에 해당하는 event 객체 복구
+        const clickedItinerary = $('.schedules').find(`input[value=${iId}]`).parent();
+        // console.log($(lastItineraryEvent).eq(0));
+        // $(lastItineraryEvent).closest('.itineraries').get(0).html('');
+        // $(lastItineraryEvent).closest('.itineraries').get(0).append(bindItinerariesByDate(date));
+
         // 일정의 event 객체 저장
-        lastItineraryEvent = e.currentTarget;
-        // 일정 Key 불러오기
-        const iId = $(lastItineraryEvent).children('input').val();
+        lastItineraryEvent = clickedItinerary;
+        // 현재 선택 일정 테두리색 변화
+        $(lastItineraryEvent).parent().css({"border-top":"2px solid #006BDF",
+            "border-bottom":"2px solid #006BDF"});
+        // 새로운 일정 Key 불러오기
+        iId = $(lastItineraryEvent).children('input').val();
         console.log("선택 일정 Key : " + iId);
         // 일정 검색어 목록 불러오기
         const keyword1 = itineraries.get(Number(iId)).lastKeyword;
@@ -520,27 +546,39 @@ $(function() {
     // })
     // 일정 추가 - click
     $(document).on("click", ".itinerary_add", function(e) {
+        if(lastItineraryEvent!==null) {
+            // 이전 선택 일정 테두리색 변화
+            // $(lastItineraryEvent).parent().css("border", "none");
+            // 클릭시 재정렬
+            // 시간 정렬
+            const date = $(lastItineraryEvent).closest('.schedule').children('input').val();
+            $(lastItineraryEvent).closest('.itineraries').html(bindItinerariesByDate(date));
+        }
         // 새로운 일정 화면 바인딩 및 객체 추가
         addItinerary(e);
         addItineraryDate(e);
-        searchSelectedPlaces('');
-        $('#schedule_search_place').val('');
+        
+        // 일정의 event 객체 저장
+        lastItineraryEvent = $(e.currentTarget).siblings('.itineraries').children().last().children('.itinerary').get(0);
+        const iId = $(lastItineraryEvent).children('input').val();
+        console.log("선택 일정 Key : " + iId);
         
         // 일정관리 탭 띄우기
         schedule_manage.css('visibility', 'visible');
+        // 장소 검색 초기화
+        searchSelectedPlaces('');
+        $('#schedule_search_place').val('');
         // 일정관리 시간 초기화 - 현재시간
         const hour = String(new Date().getHours()).padStart(2, '0');
         const minute = String(new Date().getMinutes()).padStart(2, '0');
         const time = `${hour}:${minute}:00`;
         console.log(time);
         $('.time_choose').find('input').val(parseTimeValueToTime(time));
-        // 일정의 event 객체 저장
-        lastItineraryEvent = $(e.currentTarget).siblings('.itineraries').children().last().children('.itinerary').get(0);
-        const iId = $(lastItineraryEvent).children('input').val();
-        console.log("선택 일정 Key : " + iId);
         // 비용 목록 초기화
         $('.cost_list').html('');
-
+        // 현재 선택 일정 테두리 색 변화
+        $(lastItineraryEvent).parent().css({"border-top":"2px solid #006BDF",
+            "border-bottom":"2px solid #006BDF"});
         // $('.schedule_place').children('.place_list').html('');
         
         // 현재 관리 일정
@@ -549,6 +587,7 @@ $(function() {
     })
     // 일정 삭제 - click
     $(document).on("click", ".itinerary_remove", function(e) {
+        e.stopPropagation();
         removeItinerary(e);
     })
     
@@ -888,6 +927,13 @@ function addItinerary(e) {
 function removeItinerary(e) {
     const itineraryId = $(e.currentTarget).siblings('input').val();
     itineraries.delete(Number(itineraryId));
+    // 현재 일정객체라면 일정관리탭 종료
+    if(lastItineraryEvent!==null) {
+        const eId = $(lastItineraryEvent).children('input').val();
+        if(itineraryId===eId) {
+            schedule_manage.css('visibility', 'hidden');
+        }
+    }
 
     $(e.currentTarget).parent().parent().remove();
 }
