@@ -20,6 +20,7 @@ public interface GroupMapper {
 	void exitMyPlan(String userId, long planId);
 	
 	int insertGroup(GroupDTO group);
+	
 	List<GroupMemberDTO> getMemberListByPlanId(long planId);
 	
 	List<GroupDTO> getGroupByPlanId(Long planId);

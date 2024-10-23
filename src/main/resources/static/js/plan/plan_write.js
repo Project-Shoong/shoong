@@ -1126,7 +1126,7 @@ $(function() {
                     "itineraries": itinerariesObj, 
                     "costs": costsObj}),
                 success : function(data) {
-                    window.location.href = "/user/myPlan"
+                    window.location.href = "redirect:/user/myPlan"
                 }
         })
     })

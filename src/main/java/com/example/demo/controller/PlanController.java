@@ -35,20 +35,29 @@ public class PlanController {
 	private PlanService service;
 	
 	@GetMapping("write")
-	public String write(HttpServletRequest req, HttpServletResponse resp, RedirectAttributes attributes) {
+	public String write(HttpServletRequest req, HttpServletResponse resp, Model model) {
 		HttpSession session = req.getSession();
 		String userId = (String)session.getAttribute("loginUser");
-//		로그인 확인 여부
-		if(userId!=null) {
-			return "/plan/write";
+		long planId = service.create(userId);
+		if(planId!=-1) {
+//			로그인 확인 여부
+			if(userId!=null) {
+				model.addAttribute("planId", planId);
+				return "/plan/write";
+			}
+			else {
+				Cookie cookie = new Cookie("isLogined", "false");
+				cookie.setPath("/");
+				cookie.setMaxAge(60);
+				resp.addCookie(cookie);
+			}
+			return "/user/login";
 		}
-		else {
-			Cookie cookie = new Cookie("isLogined", "false");
-			cookie.setPath("/");
-			cookie.setMaxAge(60);
-			resp.addCookie(cookie);
-		}
-		return "/user/login";
+		Cookie cookie = new Cookie("isCreated", "false");
+		cookie.setPath("/");
+		cookie.setMaxAge(60);
+		resp.addCookie(cookie);
+		return "redirect:/";
 	}
 	
 	@PostMapping("write")

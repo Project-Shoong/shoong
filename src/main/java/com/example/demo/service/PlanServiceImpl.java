@@ -52,6 +52,27 @@ public class PlanServiceImpl implements PlanService {
 	private SqlSession sqlSession;
 	
 	@Override
+	public long create(String userId) {
+		PlanDTO plan = new PlanDTO();
+		if(pmapper.insert(plan)==1) {
+			long planId = plan.getPlanId();
+			GroupDTO group = new GroupDTO();
+			group.setPlanId(planId);
+			group.setUserId(userId);
+			group.setRule("그룹장");
+			if(gmapper.insertGroup(group)==1) {
+				return planId;
+			}
+		}
+		if(pmapper.delete(plan)==1) {
+			System.out.println("계획 생성 실패 : 계획 삭제 완료");
+			return -1;
+		}
+		System.out.println("계획 생성 실패 : 계획 삭제 실패");
+		return -2;
+	}
+	
+	@Override
 	public long regist(Map<String, Object> selectedDefaultDestinations,
 			List<String> selectedDestinations,
 			Map<String, String> selectedDates,
