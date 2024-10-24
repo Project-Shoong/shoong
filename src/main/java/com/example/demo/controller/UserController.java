@@ -402,11 +402,13 @@ public class UserController {
 	
 	
 	@GetMapping("search")
-	public String search(String keyword, Model model) {
+	@ResponseBody
+	public List<UserDTO> search(String keyword) {
 		List<UserDTO> list = service.getUsersByKeyword(keyword);
-		System.out.println(list);
-		model.addAttribute("userList", list);
-		return "/plan/write :: #userList";
+//		System.out.println(list);
+//		model.addAttribute("userList", list);
+//		return "/plan/write :: #userList";
+		return list;
 	}
 	
 //	마이페이지 - 내 계정 - 포인트 관리

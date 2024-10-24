@@ -24,4 +24,6 @@ public interface GroupMapper {
 	List<GroupMemberDTO> getMemberListByPlanId(long planId);
 	
 	List<GroupDTO> getGroupByPlanId(Long planId);
+	
+	int insertRequest(GroupDTO group);
 }

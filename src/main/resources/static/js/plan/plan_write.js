@@ -182,16 +182,33 @@ $(function() {
 })
 
 // 1. 그룹 초대 ===============================================================
-// 그룹 초대 - event
+// 그룹 초대 - button
 $(function() {
     // 초대 버튼 - click시 이벤트 제거
     $(document).on("click", ".btn_invite", function(e) {
-        $(e.currentTarget).addClass("btn_clicked");
-        console.log("click");
-        $(this).off("click");
+        // 이벤트 제거
+        $(e.currentTarget).addClass("btn_clicked btn_no_hover");
+        
+        // 초대 요청
+        $.ajax({
+            url: "/group/invite",
+            type: "POST",
+            data: JSON.stringify({"planId": planId,
+                    "userId": userId}),
+            contentType: "application/json; charset=utf-8",
+            success: function (result) {
+                // websocket 요청
+            },
+            error: function (result) {
+                alert("초대 오류 발생!!")
+                setTimeout(()=>{
+                    $(e.currentTarget).removeClass("btn_clicked btn_no_hover");
+                }, 3000)
+            }
+        })
     })
 })
-// 그룹 초대 - 요청
+// 그룹 초대 - 목록
 // 사용자 검색
 function searchUser() {
     const keyword = $('#search_user').val();
@@ -201,7 +218,27 @@ function searchUser() {
             type: "GET",
             data: {"keyword": keyword},
             success: function (userList) {
-                $('#userList').replaceWith(userList);
+                // $('#userList').replaceWith(list);
+                let str = "";
+
+                const list = userList.filter(user=>user.userId!==userId);
+                for(const user of list) {
+                    str += `<div class="user">
+                                        <input type="hidden" value="${user.userId}"/>
+                                        <div class="user_img">
+                                            <img src="" alt="">
+                                        </div>
+                                        <div class="user_info">
+                                            <span>${user.nickname}</span>
+                                            <span>${user.userId}</span>
+                                        </div>
+                                        <div class="btn btn_invite">
+                                            <span>초&nbsp&nbsp대</span>
+                                        </div>
+                                    </div>`;
+                }
+
+                $('#userList').html(str);
             }
         })
     }
@@ -213,7 +250,6 @@ function searchUser() {
 window.onload = getGroupList();
 // member_index.trigger("click");
 function getGroupList() {
-    // const planId = /*[[${planId}]]*/'';
     // $.ajax({
     //     url: "/group/list",
     //     type: "GET",
@@ -1119,6 +1155,7 @@ $(function() {
                 type : "POST",
                 contentType : "application/json",
                 data : JSON.stringify({
+					"planId": planId, 
                     "selectedDefaultDestinations": selectedDefaultDestinationsObj, 
                     "selectedDestinations": [...selectedDestinations], 
                     "selectedDates": selectedDatesObj, 
@@ -1126,7 +1163,7 @@ $(function() {
                     "itineraries": itinerariesObj, 
                     "costs": costsObj}),
                 success : function(data) {
-                    window.location.href = "redirect:/user/myPlan"
+                    window.location.replace("/user/myPlan");
                 }
         })
     })

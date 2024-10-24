@@ -26,4 +26,15 @@ public class GroupServiceImpl implements GroupService {
 		return list;
 	}
 	
+	@Override
+	public int request(long planId, String userId) {
+		GroupDTO group = new GroupDTO();
+		group.setPlanId(planId);
+		group.setUserId(userId);
+		group.setRule("요청됨");
+		if(gmapper.insertGroup(group)==1) {
+			return 1;
+		}
+		return 0;
+	}
 }

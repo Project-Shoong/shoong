@@ -7,4 +7,5 @@ import com.example.demo.domain.GroupMemberDTO;
 
 public interface GroupService {
 	List<GroupMemberDTO> getList(long planId);
+	int request(long planId, String userId);
 }

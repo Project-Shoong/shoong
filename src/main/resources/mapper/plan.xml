@@ -32,6 +32,10 @@
 		insert into plan (start_date, end_date) values(#{startDate}, #{endDate})
 	</insert>
 	
+	<update id="updatePlanDate">
+		update plan set start_date = #{startDate}, end_date = #{endDate} where plan_id = #{planId}
+	</update>
+	
 	<sql id="criJ">
 		<if test = "keyword != '' and keywordType != '' and keywordType != null">
 			AND
