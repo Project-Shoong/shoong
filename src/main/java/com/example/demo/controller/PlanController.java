@@ -38,27 +38,28 @@ public class PlanController {
 	public String write(HttpServletRequest req, HttpServletResponse resp, Model model) {
 		HttpSession session = req.getSession();
 		String userId = (String)session.getAttribute("loginUser");
-		long planId = service.create(userId);
-		if(planId!=-1) {
-//			로그인 확인 여부
-			if(userId!=null) {
+		if(userId!=null) {
+			long planId = service.create(userId);
+			if(planId!=-1) {
 				model.addAttribute("planId", planId);
 				model.addAttribute("userId", userId);
 				return "/plan/write";
 			}
 			else {
-				Cookie cookie = new Cookie("isLogined", "false");
+				Cookie cookie = new Cookie("isCreated", "false");
 				cookie.setPath("/");
 				cookie.setMaxAge(60);
 				resp.addCookie(cookie);
 			}
-			return "/user/login";
+			return "redirect:/";			
 		}
-		Cookie cookie = new Cookie("isCreated", "false");
-		cookie.setPath("/");
-		cookie.setMaxAge(60);
-		resp.addCookie(cookie);
-		return "redirect:/";
+		else {
+			Cookie cookie = new Cookie("isLogined", "false");
+			cookie.setPath("/");
+			cookie.setMaxAge(60);
+			resp.addCookie(cookie);
+		}
+		return "/user/login";
 	}
 	
 	@PostMapping("write")

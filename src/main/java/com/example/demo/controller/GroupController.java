@@ -38,8 +38,8 @@ public class GroupController {
 		long planId = ((Integer)data.get("planId")).longValue();
 		String userId = (String)data.get("userId");
 		if(service.request(planId, userId)==1) {
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<String>("invite success", HttpStatus.OK);
 		}
-		return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity<String>("invite failed", HttpStatus.OK);
 	}
 }

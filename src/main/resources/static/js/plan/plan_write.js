@@ -80,6 +80,8 @@ $(function() {
         cover.css('visibility', 'visible');
 
         changeCursorStyle(e);
+
+        getInviteSocketConnection();
     })      
     destinations_index.click(function(e) {
         members_tab.css('top','0px');
@@ -94,6 +96,8 @@ $(function() {
         cover.css('visibility', 'visible');
 
         changeCursorStyle(e);
+
+        closeInviteSocketConnection();
     })      
     date_index.click(function(e) {
         members_tab.css('top','0px');
@@ -108,6 +112,8 @@ $(function() {
         cover.css('visibility', 'visible');
 
         changeCursorStyle(e);
+
+        closeInviteSocketConnection();
     })      
     places_index.click(function(e) {
         members_tab.css('top','0px');
@@ -122,6 +128,8 @@ $(function() {
         cover.css('visibility', 'hidden');
         
         changeCursorStyle(e);
+
+        closeInviteSocketConnection();
     })
     index_tab.click(function(e) {
         index_tab.css('visibility', 'hidden');
@@ -147,6 +155,8 @@ $(function() {
         btn_save.css('visibility', 'hidden');
 
         changeCursorStyle(e);
+
+        closeInviteSocketConnection();
     })
     btn_schedule.click(function() {
         if(selectedPlaces.size == 0) {
@@ -178,32 +188,71 @@ $(function() {
 
         // 기간 불러오기
         bindPeriod();
+
+        closeInviteSocketConnection();
     })
 })
 
 // 1. 그룹 초대 ===============================================================
 // 그룹 초대 - button
+// let socket = null;
+
+getInviteSocketConnection();
+function getInviteSocketConnection() {
+    if(socket_invite==null) {
+        socket_invite = new WebSocket(`ws://localhost:8080/invite/${userId}`);
+
+        socket_invite.onerror = function(e) {
+            console.log(e);
+        }
+        socket_invite.onopen = function(e) {
+            console.log(e);
+        }
+        socket_invite.onmessage = function(e) {
+            console.log(e.data);
+        }
+        socket_invite.onclose = function(e) {
+            console.log(e);
+        }
+    }
+}
+function closeInviteSocketConnection() {
+    if(socket_invite!=null) {
+        socket_invite.close();
+        socket_invite = null;
+    }
+}
+
+
 $(function() {
     // 초대 버튼 - click시 이벤트 제거
     $(document).on("click", ".btn_invite", function(e) {
         // 이벤트 제거
         $(e.currentTarget).addClass("btn_clicked btn_no_hover");
         
+        const inviteUserId = $(e.currentTarget).siblings('input').val();
+
         // 초대 요청
         $.ajax({
             url: "/group/invite",
             type: "POST",
             data: JSON.stringify({"planId": planId,
-                    "userId": userId}),
+                    "userId": inviteUserId}),
             contentType: "application/json; charset=utf-8",
             success: function (result) {
-                // websocket 요청
-            },
-            error: function (result) {
-                alert("초대 오류 발생!!")
-                setTimeout(()=>{
-                    $(e.currentTarget).removeClass("btn_clicked btn_no_hover");
-                }, 3000)
+                // 성공
+                if(result === "invite success") {
+                    // socket 전송
+                    socket_invite.send(`${planId}:${inviteUserId}`);
+                }
+
+                // 실패
+                else if(result === "invite failed") {
+                    alert("초대 오류 발생!!")
+                    setTimeout(()=>{
+                        $(e.currentTarget).removeClass("btn_clicked btn_no_hover");
+                    }, 3000)
+                }
             }
         })
     })
@@ -1149,7 +1198,10 @@ $(function() {
         console.log(JSON.stringify({"selectedDates": selectedDatesObj})); 
         console.log(JSON.stringify({"selectedPlaces": selectedPlacesObj})); 
         console.log(JSON.stringify({"itineraries": itinerariesObj})); 
-        console.log(JSON.stringify({"costs": costsObj})); 
+        console.log(JSON.stringify({"costs": costsObj}));
+
+        closeInviteSocketConnection();
+
         $.ajax({
                 url : "/plan/write",
                 type : "POST",

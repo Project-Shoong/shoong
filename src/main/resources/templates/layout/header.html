@@ -1,6 +1,5 @@
 <th:block th:fragment="header">
 <script defer src="/js/script.js"></script>
-
 <div class="inner">
     <div class="logo">
         <a href="/" id="logoimg"><img src="/images/top_logo.png" alt=""></a>
@@ -28,4 +27,39 @@
         </ul>
     </div>
 </div>
+<script src="/js/jquery-3.7.1.min.js"></script>
+<script>
+
+let socket_invite = null;
+let userId = null;
+// socket 연결
+if(sessionStorage.getItem("loginUser")!=null) {
+    userId = sessionStorage.getItem("loginUser");
+    
+    socket_invite = new WebSocket(`ws://localhost:8080/invite/${userId}`);
+
+    socket_invite.onerror = function(e) {
+        console.log(e);
+    }
+    socket_invite.onopen = function(e) {
+        console.log(e);
+    }
+    socket_invite.onmessage = function(e) {
+        console.log(e.data);
+    }
+    socket_invite.onclose = function(e) {
+        console.log(e);
+    }
+}
+
+$(function(){
+    const planning = $('.menu').find('a').eq(0);
+    planning.click(function() {
+        if(socket_invite != null) {
+            socket_invite.close();
+            socket_invite = null;
+        }
+    })
+})
+</script>
 </th:block>
