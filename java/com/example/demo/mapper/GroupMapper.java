@@ -1,6 +1,8 @@
 package com.example.demo.mapper;
 
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.demo.domain.GroupDTO;
@@ -26,4 +28,14 @@ public interface GroupMapper {
 	List<GroupDTO> getGroupByPlanId(Long planId);
 	
 	int insertRequest(GroupDTO group);
+	
+	List<Map<String, Object>> getInvitedListByUserId(String userId);
+	
+	String getLeaderByPlanId(long planId);
+	
+	int updateMember(long planId, String userId);
+	
+	int deleteMember(long planId, String userId);
+	
+	List<String> getMembersId(long planId);
 }

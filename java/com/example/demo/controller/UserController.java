@@ -403,8 +403,8 @@ public class UserController {
 	
 	@GetMapping("search")
 	@ResponseBody
-	public List<UserDTO> search(String keyword) {
-		List<UserDTO> list = service.getUsersByKeyword(keyword);
+	public List<UserDTO> search(String keyword, String planId) {
+		List<UserDTO> list = service.getUsersByKeyword(keyword, Long.parseLong(planId));
 //		System.out.println(list);
 //		model.addAttribute("userList", list);
 //		return "/plan/write :: #userList";

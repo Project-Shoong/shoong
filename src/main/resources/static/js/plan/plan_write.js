@@ -210,6 +210,16 @@ function getInviteSocketConnection() {
         }
         socket_invite.onmessage = function(e) {
             console.log(e.data);
+            let sender = e.data.split(":")[0];
+            let responsedPlanId = e.data.split(":")[1];
+            console.log("planId and responsed : " + planId + " " + responsedPlanId)
+            if(responsedPlanId == String(planId)) {
+                console.log("here")
+                if(sender=='accept' || sender=='refuse') {
+                    console.log("here2")
+                    getGroupList();
+                }
+            }
         }
         socket_invite.onclose = function(e) {
             console.log(e);
@@ -243,7 +253,8 @@ $(function() {
                 // 성공
                 if(result === "invite success") {
                     // socket 전송
-                    socket_invite.send(`${planId}:${inviteUserId}`);
+                    socket_invite.send(`invite:${planId}:${inviteUserId}`);
+                    getGroupList();
                 }
 
                 // 실패
@@ -265,13 +276,15 @@ function searchUser() {
         $.ajax({
             url: "/user/search",
             type: "GET",
-            data: {"keyword": keyword},
+            data: {"keyword": keyword,
+                "planId": planId
+            },
             success: function (userList) {
                 // $('#userList').replaceWith(list);
                 let str = "";
 
-                const list = userList.filter(user=>user.userId!==userId);
-                for(const user of list) {
+                // const list = userList.filter(user=>user.userId!==userId);
+                for(const user of userList) {
                     str += `<div class="user">
                                         <input type="hidden" value="${user.userId}"/>
                                         <div class="user_img">
@@ -299,14 +312,15 @@ function searchUser() {
 window.onload = getGroupList();
 // member_index.trigger("click");
 function getGroupList() {
-    // $.ajax({
-    //     url: "/group/list",
-    //     type: "GET",
-    //     data: {"planId": planId},
-    //     success: function (groupMemberList) {
-    //         $('#groupMemberList').replaceWith(groupMemberList);
-    //     }
-    // })
+    console.log("here3")
+    $.ajax({
+        url: "/group/list",
+        type: "GET",
+        data: {"planId": planId},
+        success: function (groupMemberList) {
+            $('#groupMemberList').replaceWith(groupMemberList);
+        }
+    })
 }
 
 // 2. 도시 및 나라 선택 ===============================================================
