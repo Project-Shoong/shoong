@@ -29,5 +29,8 @@ public interface UserService {
 	void exitMyPlan(String userId, long planId);
 
 	List<UserDTO> getUsersByKeyword(String keyword);
+	
+	void socialJoin(UserDTO userDTO);
+	UserDTO getSocialUserByUserId(String userId);
 }
  

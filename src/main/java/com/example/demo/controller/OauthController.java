@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -18,6 +19,8 @@ import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.example.demo.domain.UserDTO;
+import com.example.demo.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,8 +33,6 @@ import kotlinx.serialization.json.JsonObject;
 @Controller
 @RequestMapping("/oauth2/*")
 public class OauthController {
-
-	//redirectURL: http://localhost:8080/oauth2/kakao/callback
 	
 	@Value("${kakao.client.id}")
 	private String kakaoClientId;
@@ -39,6 +40,8 @@ public class OauthController {
 	@Value("${kakao.redirect.uri}")
 	private String kakaoRedirectUri;
 	
+	@Autowired
+	private UserService userService;
 
 //	인가코드 요청
 	@GetMapping("kakao")
@@ -62,13 +65,27 @@ public class OauthController {
 		//3. 사용자 정보 추출
 		String userId = user.path("id").asText();
 		String nickname = user.path("properties").path("nickname").asText();
+		String systemName = user.path("properties").path("profile_image").asText();
 
-		//4. 세션에 사용자 정보 저장
+		//4. 만약 처음 로그인한다면 DB에 사용자 정보 저장
+		UserDTO userDTO = userService.getSocialUserByUserId(userId);
+		
+		if(userDTO == null) {
+			userDTO = new UserDTO();
+			userDTO.setUserId(userId);
+			userDTO.setNickname(nickname);
+			userDTO.setSystemName(systemName);
+			
+			userService.socialJoin(userDTO);
+		}
+		
+		//5. 세션에 사용자 정보 저장
 		HttpSession session = req.getSession();
-		session.setAttribute("loginUser", user);
+		session.setAttribute("loginUser", userId);
 		
 		return "redirect:/";
 	}
+
 	
 //	인가코드를 통해 엑세스 토큰 발급 메서드
 	private String generateToken(String code) {
