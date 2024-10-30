@@ -40,6 +40,12 @@ public class OauthController {
 	@Value("${kakao.redirect.uri}")
 	private String kakaoRedirectUri;
 	
+	@Value("${google.client.id}")
+	private String googleClientId;
+	
+	@Value("${google.redirect.uri}")
+	private String googleRedirectUri;
+	
 	@Autowired
 	private UserService userService;
 
@@ -122,5 +128,21 @@ public class OauthController {
                 .block();
 	}
 
+	@GetMapping("google")
+	public String googleLogin() {
+		String googleLoginUrl = "https://accounts.google.com/o/oauth2/v2/auth?client_id=" + googleClientId + 
+				"&redirect_uri=" + googleRedirectUri +
+				"&response_type=code" +
+				"&scope=email profile";
+		
+		return "redirect:" + googleLoginUrl;
+	}
+	
+	@GetMapping("google/callback")
+	public String googleCallback(@RequestParam("code") String code, HttpServletRequest req) {
+		//String accessToken = generateToken(code);
+		System.out.println(code);
+		return "redirect:/";
+	}
 }
 
