@@ -340,7 +340,6 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void socialJoin(UserDTO userDTO) {
 		userMapper.insertSocialUser(userDTO);
-		System.out.println("user insert 잘됬는지 확인" + userDTO);
 	}
 
 	@Override

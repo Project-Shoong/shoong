@@ -10,13 +10,23 @@
 	<insert id="insertSocialUser">
 		insert into user (user_id, nickname, system_name, origin_name, email, phone_number, password, point)
 		values(#{userId}, #{nickname}, #{systemName}, 'default_profile.png', 
-		<if test="email != null and email != ''">
-			#{email}
-		</if>
-		<if test="email == null or email ==''">
-			'unknow@example.com'
-		</if>
-		, '000-0000-0000', 'defaultPassword',0)
+		<choose>
+			<when test="email != null and email !=''">
+				#{email}	
+			</when>
+			<otherwise>
+				'unknow@example.com'				
+			</otherwise>
+		</choose>,
+		<choose>
+           <when test="phoneNumber != null and phoneNumber != ''">
+               #{phoneNumber}
+           </when>
+           <otherwise>
+               '000-0000-0000'
+           </otherwise>
+        </choose>,
+	 	'defaultPassword',0)
 	</insert>
 	
 	<select id="getUserByUserId">
