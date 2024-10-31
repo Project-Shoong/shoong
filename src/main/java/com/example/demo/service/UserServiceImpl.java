@@ -94,7 +94,12 @@ public class UserServiceImpl implements UserService{
 		if("default_profile.png".equals(systemName)) {
 			fullPath = DEFAULT_FROFILE_IMAGE_PATH;
 		}
+		else if (systemName.startsWith("http")) {
+			// url 이 제공하는 경우
+			fullPath = systemName;
+		}
 		else {
+			// 로컬 파일 경로 처리
 			File file = new File(saveFolder, systemName);
 			if(file.exists()) {
 				String filename = file.getName();
