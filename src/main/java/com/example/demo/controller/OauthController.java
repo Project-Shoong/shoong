@@ -46,6 +46,9 @@ public class OauthController {
 	@Value("${google.redirect.uri}")
 	private String googleRedirectUri;
 	
+	@Value("${google.client.secret}")
+	private String googleClientSecret;
+	
 	@Autowired
 	private UserService userService;
 
@@ -128,6 +131,7 @@ public class OauthController {
                 .block();
 	}
 
+//	google
 	@GetMapping("google")
 	public String googleLogin() {
 		String googleLoginUrl = "https://accounts.google.com/o/oauth2/v2/auth?client_id=" + googleClientId + 
@@ -140,9 +144,69 @@ public class OauthController {
 	
 	@GetMapping("google/callback")
 	public String googleCallback(@RequestParam("code") String code, HttpServletRequest req) {
-		//String accessToken = generateToken(code);
+		String accessToken = generateGoogleToken(code);
+		
+		JsonNode user = findUserInfoOfGoogle(accessToken);
+		
+		String userId = user.path("id").asText();
+		String nickname = user.path("name").asText();
+		String email = user.path("email").asText();
+		String systemName = user.path("picture").asText();
+		
+		UserDTO userDTO = userService.getSocialUserByUserId(userId);
+		
+		if(userDTO == null) {
+			userDTO = new UserDTO();
+			userDTO.setUserId(userId);
+			userDTO.setNickname(nickname);
+			userDTO.setEmail(email);
+			userDTO.setSystemName(systemName);
+			
+			userService.socialJoin(userDTO);
+		}
+		
+		HttpSession session = req.getSession();
+		session.setAttribute("loginUser", userId);
+		
 		System.out.println(code);
+		System.out.println(accessToken);
+		System.out.println(user);
+		
 		return "redirect:/";
 	}
+	
+	private String generateGoogleToken(String code) {
+		MultiValueMap<String, String> params = new LinkedMultiValueMap<>(); 
+		params.add("grant_type", "authorization_code"); 
+		params.add("client_id", googleClientId);
+		params.add("client_secret", googleClientSecret);
+		params.add("redirect_uri", googleRedirectUri);
+		params.add("code", code);	
+		
+		JsonNode response = WebClient.builder()
+				.baseUrl("https://oauth2.googleapis.com/token")
+				.build()
+				.post()
+				.header("Content-type", "application/x-www-form-urlencoded;charset-utf-8")
+				.body(BodyInserters.fromFormData(params)) 
+				.retrieve() 
+				.bodyToMono(JsonNode.class)
+				.block();
+		
+		return response.path("access_token").asText();
+	}
+	
+	private JsonNode findUserInfoOfGoogle(String accessToken) {
+		return WebClient.builder()
+                .baseUrl("https://www.googleapis.com/userinfo/v2/me")
+                .build()
+                .get()
+                .header("Content-type", "application/x-www-form-urlencoded;charset=utf-8")
+                .header("Authorization", "Bearer " + accessToken)
+                .retrieve()
+                .bodyToMono(JsonNode.class)
+                .block();
+	}
+	
 }
 
