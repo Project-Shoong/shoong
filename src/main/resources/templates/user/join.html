@@ -7,7 +7,13 @@
     <link rel="stylesheet" href="/css/kuj.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-<body>
+<script type="text/javascript">
+	window.history.forward();
+	function noBack() {
+		window.history.forward();
+	}
+</script>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 <div id="first_page">
     <section>
         <div id="join">

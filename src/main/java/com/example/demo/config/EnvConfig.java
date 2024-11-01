@@ -5,5 +5,5 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 
 @Configuration
-@PropertySource("file:D:/workspace/spring/shoong/api-key.env")
+@PropertySource("file:D:/shoong/api-key.env")
 public class EnvConfig {}
