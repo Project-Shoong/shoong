@@ -44,11 +44,7 @@
 
                     <!-- 포인트 관리 -->
                     <div id="my_point">
-						<div th:if="${pt == null or pt.size() == 0}"}>
-							<p>적립된 포인트가 없습니다.</p>
-						</div>
-						
-                        <div class="point_item" th:each="point : ${pt}">
+                        <div th:if="${pt != null and pt.size > 0}" class="point_item">
                             <table class="point_table">
                                 <thead>
                                     <tr>
@@ -58,14 +54,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td th:text="${}">2024.09.20</td>
-                                        <td th:text="${}">적립</td th:text="${}">
-                                        <td th:text="${}" class="point_positive">+ 500</td>
+                                    <tr th:each="point : ${pt}">
+                                        <td th:text="${point.createdDate}" class="createdDate"></td>
+                                        <td th:text="${point.content}"></td>
+                                        <td th:text="${point.point}" class="point_positive"></td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+						<div th:if="${pt == null or pt.size() == 0}">
+							<p>적립된 포인트가 없습니다.</p>
+						</div>
                     </div>
 
             </div>
@@ -77,4 +76,16 @@
         <th:block th:replace="~{layout/footer::footer}"></th:block>
     </div>
 </div>
+<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		const createdDates = document.querySelectorAll('.createdDate');
+		
+		createdDates.forEach(date => {
+			const dateTime = date.innerText;
+			const dateOnly = dateTime.split(' ')[0];
+			date.innerText = dateOnly;
+		});
+	});
+</script>
 </body>
+</html>

@@ -57,7 +57,7 @@ public class OauthController {
 	
 	@Value("${naver.client.secret}")
 	private String naverClientSecret;
-	
+
 	@Autowired
 	private UserService userService;
 
