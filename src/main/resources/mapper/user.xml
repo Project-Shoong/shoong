@@ -9,7 +9,6 @@
 	
 	<insert id="insertSocialUser">
 		insert into user (user_id, nickname, system_name, origin_name, email, phone_number, password)
-
 		values(#{userId}, #{nickname}, #{systemName}, 'default_profile.png', 
 		<choose>
 			<when test="email != null and email !=''">
